@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🌾 KrishiRakshak AI - Complete Setup & Deployment Guide
 
 > Your intelligent farming companion with AI-powered disease detection, real-time maps, and multi-language support.
@@ -352,3 +353,7 @@ For production deployment support, reach out to your backend team.
 
 Last updated: May 25, 2024
 Version: 1.0.0
+=======
+# AGTECHATHON-2.0-2k26
+ Hackathon project - AGTECHATHON 2.0 by A.G. Patil Institute of Technology, Solapur.
+>>>>>>> 0504385ca69185ba0caf80db6ce43dae15c15063
