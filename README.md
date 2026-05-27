@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🌾 KrishiRakshak AI - Complete Setup & Deployment Guide
 
 > Your intelligent farming companion with AI-powered disease detection, real-time maps, and multi-language support.
@@ -18,8 +17,8 @@
 
 ### 1. Clone & Install
 ```bash
-git clone <your-repo>
-cd <project-directory>
+git clone https://github.com/siddhantgosavi7/AGTECHATHON-2.0-2k26
+cd AGTECHATHON-2.0-2k26
 npm install
 ```
 
@@ -60,35 +59,39 @@ Open http://localhost:5173 🎉
 ## 🏗️ Project Structure
 
 ```
-new-project/
-├── server/                    # Backend (Node.js + Express)
-│   ├── controllers/          # API logic
-│   ├── services/             # Google Maps, Gemini, Weather APIs
-│   ├── routes/               # API endpoints
-│   ├── middleware/           # Auth, file upload, error handling
-│   ├── config/               # Environment configuration
-│   └── data/                 # Mock data
+AGTECHATHON-2.0-2k26/
+├── .github/
+│   └── workflows/              # GitHub Actions CI/CD
+│       └── deploy.yml          # Automated GitHub Pages deployment
 │
-├── src/                      # Frontend (React + Vite)
-│   ├── pages/               # Full-page components
+├��─ server/                     # Backend (Node.js + Express)
+│   ├── controllers/            # API logic
+│   ├── services/               # Google Maps, Gemini, Weather APIs
+│   ├── routes/                 # API endpoints
+│   ├── middleware/             # Auth, file upload, error handling
+│   ├── config/                 # Environment configuration
+│   └── data/                   # Mock data
+│
+├── src/                        # Frontend (React + Vite)
+│   ├── pages/                  # Full-page components
 │   │   ├── LandingPage.jsx
 │   │   ├── DetectionPage.jsx
 │   │   ├── ChatbotPage.jsx
 │   │   ├── DashboardPage.jsx
-│   │   ├── SchemesPage.jsx  # 🗺️ Maps integration
+│   │   ├── SchemesPage.jsx     # 🗺️ Maps integration
 │   │   └── ...
-│   ├── components/          # Reusable UI components
-│   │   ├── MapComponent.jsx # 🗺️ NEW - Interactive maps
+│   ├── components/             # Reusable UI components
+│   │   ├── MapComponent.jsx    # 🗺️ NEW - Interactive maps
 │   │   ├── Button.jsx
 │   │   ├── Card.jsx
 │   │   └── ...
-│   ├── services/            # API client functions
-│   ├── context/             # Global state management
-│   └── styles/              # Tailwind CSS
+│   ├── services/               # API client functions
+│   ├── context/                # Global state management
+│   └── styles/                 # Tailwind CSS
 │
-├── public/                  # Static assets
-├── .env.example            # Environment template
-├── .env.local              # Local environment (frontend)
+├── public/                     # Static assets
+├── .env.example                # Environment template
+├── .env.local                  # Local environment (frontend)
 ├── package.json
 ├── vite.config.js
 ├── tailwind.config.js
@@ -117,7 +120,7 @@ GET /api/weather-risk?location=Pune
 POST /api/detect-disease        # Upload image
 GET  /api/history               # Get detection history
 
-# Chat & Chat
+# Chat & Chatbot
 POST /api/chatbot               # Send message
 POST /api/chatbot-session       # Start new session
 
@@ -150,7 +153,18 @@ npm run lint
 
 ## 🚀 Deployment
 
-### Option 1: Railway + Vercel (Recommended)
+### Option 1: GitHub Pages (Recommended for Frontend)
+
+The project is configured for automatic GitHub Pages deployment via GitHub Actions.
+
+**Setup:**
+1. Ensure repository is public
+2. Push to main branch
+3. GitHub Actions will automatically build and deploy
+
+**Access:** https://siddhantgosavi7.github.io/AGTECHATHON-2.0-2k26
+
+### Option 2: Railway + Vercel
 
 1. **Deploy Backend to Railway**
    ```bash
@@ -213,7 +227,7 @@ npm run lint
 | **Database** | Supabase (PostgreSQL) |
 | **APIs** | Google Maps, Google Gemini, Weather API |
 | **Authentication** | JWT tokens |
-| **Hosting** | Vercel (frontend), Railway (backend) |
+| **Hosting** | GitHub Pages (frontend), Railway (backend) |
 | **Styling** | Tailwind CSS, Framer Motion |
 | **Maps** | Google Maps JavaScript API |
 
@@ -268,13 +282,16 @@ npm run server
 lsof -i :4000
 ```
 
-### Database Connection
+### GitHub Pages Deployment
 ```bash
-# Verify Supabase credentials in .env
-echo $SUPABASE_URL
-echo $SUPABASE_KEY
+# 1. Check GitHub Actions logs
+# Go to Actions tab in GitHub repo
 
-# Test connection from Supabase dashboard
+# 2. Ensure proper permissions
+# Settings -> Actions -> Workflow permissions -> Read and write
+
+# 3. Verify main branch is default
+# Settings -> Branches -> Default branch
 ```
 
 ## 📈 Performance Tips
@@ -301,8 +318,8 @@ echo $SUPABASE_KEY
 
 3. **Deploy to Production**
    - Push to GitHub
+   - GitHub Actions deploys to Pages automatically
    - Deploy backend to Railway
-   - Deploy frontend to Vercel
 
 4. **Setup Monitoring** (Production)
    - Add error tracking (Sentry)
@@ -352,9 +369,5 @@ Prathamesh Chougale : calmeflea69@gmail.com
 
 **Happy farming with AI! 🌾🤖**
 
-Last updated: May 25, 2024
+Last updated: May 27, 2026
 Version: 1.0.0
-=======
-# AGTECHATHON-2.0-2k26
- Hackathon project - AGTECHATHON 2.0 by A.G. Patil Institute of Technology, Solapur.
->>>>>>> 0504385ca69185ba0caf80db6ce43dae15c15063
