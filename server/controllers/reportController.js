@@ -1,4 +1,4 @@
-import { reports } from '../data/store.js';
+import { persistStore, reports } from '../data/store.js';
 
 export function createReport(req, res) {
   const report = {
@@ -13,6 +13,7 @@ export function createReport(req, res) {
     createdAt: new Date().toISOString(),
   };
   reports.unshift(report);
+  persistStore();
   res.status(201).json(report);
 }
 

@@ -4,8 +4,14 @@ import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { LanguageSelector } from '../components/LanguageSelector';
 import { sendChatMessage } from '../services/api';
-import { suggestedPrompts } from '../services/mockData';
 import { useTranslation } from 'react-i18next';
+
+const suggestedPrompts = [
+  'Why are my tomato leaves turning yellow?',
+  'Best fertilizer for sugarcane?',
+  'How to prevent fungal infection?',
+  'Should I spray after rainfall?',
+];
 
 export function ChatbotPage() {
   const { i18n } = useTranslation();

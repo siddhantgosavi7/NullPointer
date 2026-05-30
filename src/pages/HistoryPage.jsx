@@ -1,5 +1,6 @@
 import { Download, Search } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import { jsPDF } from 'jspdf';
 import { Button } from '../components/Button';
 import { Card } from '../components/Card';
 import { SeverityBadge } from '../components/SeverityBadge';
@@ -10,6 +11,26 @@ export function HistoryPage() {
   const [history, setHistory] = useState([]);
   useEffect(() => { getHistory().then(setHistory); }, []);
   const items = useMemo(() => history.filter((item) => `${item.crop} ${item.disease}`.toLowerCase().includes(query.toLowerCase())), [history, query]);
+
+  const handleExport = () => {
+    const pdf = new jsPDF();
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(16);
+    pdf.text('KrishiRakshak AI History Export', 14, 18);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(11);
+
+    const lines = items.flatMap((item, index) => [
+      `${index + 1}. ${item.crop} - ${item.disease}`,
+      `Severity: ${item.severity} | Confidence: ${item.confidence}% | Date: ${item.date}`,
+      `Location: ${item.location || 'N/A'}`,
+      '',
+    ]);
+
+    pdf.text(lines.length ? lines : ['No records available for export.'], 14, 32);
+    pdf.save('krishirakshak-history.pdf');
+  };
+
   return (
     <section className="mx-auto max-w-7xl px-4 py-10">
       <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
@@ -17,7 +38,7 @@ export function HistoryPage() {
           <p className="text-sm font-black uppercase tracking-wide text-leaf-600">Crop Health History</p>
           <h1 className="mt-2 text-4xl font-black text-slate-950 dark:text-white">Timeline of previous diagnoses</h1>
         </div>
-        <Button><Download size={18} /> Export PDF</Button>
+        <Button onClick={handleExport}><Download size={18} /> Export PDF</Button>
       </div>
       <label className="mb-6 flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-3 dark:border-white/10 dark:bg-slate-900">
         <Search className="text-leaf-600" />

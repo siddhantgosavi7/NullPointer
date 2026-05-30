@@ -1,4 +1,4 @@
-import { history } from '../data/store.js';
+import { history, persistStore } from '../data/store.js';
 import { analyzeCropImage, fallbackDiagnosis } from '../services/gemini.js';
 
 export async function detectDisease(req, res) {
@@ -29,12 +29,14 @@ export async function detectDisease(req, res) {
     source,
   };
   history.unshift(record);
+  persistStore();
   res.json(record);
 }
 
 export function saveDiagnosis(req, res) {
   const record = { id: crypto.randomUUID(), ...req.body, date: new Date().toISOString() };
   history.unshift(record);
+  persistStore();
   res.status(201).json(record);
 }
 

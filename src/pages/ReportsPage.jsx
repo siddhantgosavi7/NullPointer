@@ -5,11 +5,16 @@ import { Card } from '../components/Card';
 import { ProgressBar } from '../components/ProgressBar';
 import { ReportModal } from '../components/ReportModal';
 import { SeverityBadge } from '../components/SeverityBadge';
-import { createReport } from '../services/api';
-import { diagnosisHistory } from '../services/mockData';
+import { createReport, getHistory } from '../services/api';
 
 export function ReportsPage() {
   const [report, setReport] = useState(null);
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    getHistory().then(setHistory);
+  }, []);
+
   const sample = {
     crop: 'Tomato',
     disease: 'Early Blight',
@@ -53,7 +58,7 @@ export function ReportsPage() {
       <Card className="mt-6">
         <h2 className="mb-4 text-xl font-black dark:text-white">Recent reports</h2>
         <div className="grid gap-3">
-          {diagnosisHistory.map((item) => (
+          {history.map((item) => (
             <button key={item.id} onClick={() => setReport({ ...sample, crop: item.crop, disease: item.disease, severity: item.severity, confidence: item.confidence })} className="flex items-center justify-between rounded-lg bg-slate-50 p-4 text-left dark:bg-slate-800">
               <span className="font-bold">{item.crop} · {item.disease}</span>
               <Download className="text-leaf-600" />

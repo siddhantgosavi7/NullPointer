@@ -1,16 +1,10 @@
-import { motion } from 'framer-motion';
-
 export function Card({ children, className = '' }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.35 }}
+    <div
       className={`rounded-lg border border-slate-200 bg-white p-5 shadow-soft dark:border-white/10 dark:bg-slate-900 ${className}`}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

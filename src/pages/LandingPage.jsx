@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ArrowRight, Bot, CloudSun, FileText, ShieldCheck, Smartphone, UploadCloud } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -18,15 +17,15 @@ export function LandingPage() {
     <>
       <section className="bg-farm bg-cover bg-center">
         <div className="mx-auto flex min-h-[calc(100vh-9rem)] max-w-7xl flex-col justify-center px-4 py-14 text-white">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl">
+          <div className="max-w-4xl">
             <p className="mb-4 inline-flex rounded-full bg-white/18 px-4 py-2 text-sm font-bold ring-1 ring-white/25">Built for field decisions, not office desks</p>
             <h1 className="text-4xl font-black leading-tight sm:text-6xl lg:text-7xl">{t('appName')}</h1>
             <p className="mt-5 max-w-2xl text-xl font-semibold text-leaf-50">{t('heroTagline')}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button as={Link} to="/detect">{t('uploadLeaf')} <ArrowRight size={18} /></Button>
-              <Button as="a" href="#features" variant="secondary">{t('exploreFeatures')}</Button>
+              <Button as={Link} to="/auth">Start session <ArrowRight size={18} /></Button>
+              <Button as={Link} to="/detect" variant="secondary">{t('uploadLeaf')}</Button>
             </div>
-          </motion.div>
+          </div>
           <div className="mt-10 grid gap-3 text-sm font-bold sm:grid-cols-3">
             {['AI scan with treatment plan', 'Weather-driven disease risk', 'Reports ready for experts'].map((item) => (
               <div key={item} className="border-l-4 border-leaf-300 bg-slate-950/24 px-4 py-3 backdrop-blur">{item}</div>

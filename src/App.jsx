@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './components/Layout';
+import { GuestRoute, ProtectedRoute } from './components/ProtectedRoute';
 import { AuthPage } from './pages/AuthPage';
 import { ChatbotPage } from './pages/ChatbotPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -15,14 +16,70 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/detect" element={<DetectionPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/weather" element={<WeatherPage />} />
-        <Route path="/chatbot" element={<ChatbotPage />} />
-        <Route path="/history" element={<HistoryPage />} />
-        <Route path="/reports" element={<ReportsPage />} />
-        <Route path="/schemes" element={<SchemesPage />} />
+        <Route
+          path="/auth"
+          element={
+            <GuestRoute>
+              <AuthPage />
+            </GuestRoute>
+          }
+        />
+        <Route
+          path="/detect"
+          element={
+            <ProtectedRoute>
+              <DetectionPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/weather"
+          element={
+            <ProtectedRoute>
+              <WeatherPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chatbot"
+          element={
+            <ProtectedRoute>
+              <ChatbotPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <ProtectedRoute>
+              <HistoryPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/reports"
+          element={
+            <ProtectedRoute>
+              <ReportsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/schemes"
+          element={
+            <ProtectedRoute>
+              <SchemesPage />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Layout>
   );

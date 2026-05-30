@@ -1,10 +1,36 @@
 import { X, Download } from 'lucide-react';
+import { jsPDF } from 'jspdf';
 import { Button } from './Button';
 import { ProgressBar } from './ProgressBar';
 import { SeverityBadge } from './SeverityBadge';
 
 export function ReportModal({ report, onClose }) {
   if (!report) return null;
+
+  const handleDownload = () => {
+    const pdf = new jsPDF();
+    const lines = [
+      'KrishiRakshak AI Diagnosis Report',
+      '',
+      `Crop: ${report.crop || 'N/A'}`,
+      `Disease: ${report.disease || 'N/A'}`,
+      `Severity: ${report.severity || 'N/A'}`,
+      `Confidence: ${report.confidence ?? 'N/A'}%`,
+      `Weather: ${report.weather || 'N/A'}`,
+      `Treatment: ${(report.treatment || []).join('; ') || 'N/A'}`,
+      `Prevention: ${(report.prevention || []).join('; ') || 'N/A'}`,
+      `Timestamp: ${report.date || report.createdAt || new Date().toISOString()}`,
+    ];
+
+    pdf.setFont('helvetica', 'bold');
+    pdf.setFontSize(16);
+    pdf.text(lines[0], 14, 18);
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(11);
+    pdf.text(lines.slice(2), 14, 32);
+    pdf.save(`krishirakshak-report-${report.id || 'diagnosis'}.pdf`);
+  };
+
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-slate-950/60 p-4">
       <div className="max-h-[90vh] w-full max-w-2xl overflow-auto rounded-lg bg-white p-6 shadow-soft dark:bg-slate-900">
@@ -28,7 +54,7 @@ export function ReportModal({ report, onClose }) {
         <div className="mt-5">
           <ProgressBar label="AI confidence score" value={report.confidence} />
         </div>
-        <Button className="mt-6 w-full" onClick={() => window.print()}>
+        <Button className="mt-6 w-full" onClick={handleDownload}>
           <Download size={18} /> Download Report
         </Button>
       </div>

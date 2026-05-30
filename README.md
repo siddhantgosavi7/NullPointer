@@ -1,373 +1,211 @@
-# 🌾 KrishiRakshak AI - Complete Setup & Deployment Guide
+# KrishiRakshak AI
 
-> Your intelligent farming companion with AI-powered disease detection, real-time maps, and multi-language support.
+An AI-powered smart farming platform built for hackathon demo flow and aligned to the requirements in [Requirement.md](Requirement.md). It helps farmers detect crop diseases from leaf images, check weather-based disease risk, track history, generate PDF reports, and browse government agricultural schemes.
 
-## 📸 Features
+## Hackathon Goal
 
-- 🤖 **AI Disease Detection** - Upload crop photos for instant diagnosis
-- 🗺️ **Real-time Google Maps** - Find nearby fertilizer shops, experts, labs
-- 💬 **Multi-language Chatbot** - English, Hindi, Marathi support
-- 📊 **Dashboard & Analytics** - Track scanning history and trends
-- ⚠️ **Weather Alerts** - Risk assessment based on weather conditions
-- 🏛️ **Government Schemes** - Access to agricultural subsidy programs
-- 📱 **Mobile Responsive** - Works on all devices
-- 🌙 **Dark Mode** - Comfortable viewing in any lighting
+KrishiRakshak AI is designed as a farmer-first workspace for quick field decisions. The current codebase focuses on a strong demo experience with a clean UI, disease-analysis workflow, weather alerts, PDF reports, history, and multilingual navigation. The requirement document also defines the production direction for Supabase-backed auth, storage, and persistence.
 
-## 🚀 Quick Start (5 Minutes)
+## What It Does
 
-### 1. Clone & Install
-```bash
-git clone https://github.com/siddhantgosavi7/AGTECHATHON-2.0-2k26
-cd AGTECHATHON-2.0-2k26
-npm install
-```
+- AI disease detection from crop leaf images
+- Treatment suggestions and prevention tips
+- Weather-based disease risk alerts
+- Detection history and report export
+- Government scheme listings with official links
+- English, Hindi, and Marathi UI support
+- Mobile-friendly layout and dark mode
 
-### 2. Get API Keys (Free)
-- **Google Maps**: [console.cloud.google.com](https://console.cloud.google.com)
-- **Gemini AI**: [aistudio.google.com](https://aistudio.google.com/app/apikey)
+## Current Implementation Status
 
-### 3. Setup Environment
-```bash
-# Create .env from template
-cp .env.example .env
+This repo already includes working app pages and backend routes for the core demo flow:
 
-# Add your API keys
-GEMINI_API_KEY=<your-key>
-GOOGLE_MAPS_API_KEY=<your-key>
-```
+- Landing, login/register, dashboard, detection, weather, history, reports, schemes, and chatbot pages
+- Client-side session handling for the hackathon build
+- Persistent local state for demo auth and saved reports
+- File-based history/report persistence on the backend
+- jsPDF report export
+- Weather fallback logic with optional live OpenWeatherMap support
+- Gemini-backed disease analysis flow
 
-### 4. Run It!
-```bash
-npm run dev:full
-```
+Planned production work from the requirement document:
 
-Open http://localhost:5173 🎉
+- Supabase Auth for real user accounts
+- Supabase Database for detections, reports, and user data
+- Supabase Storage for uploaded images
+- Google Translate API for server-assisted translation
 
-## 📚 Full Documentation
+## Project Structure
 
-| Document | Purpose |
-|----------|---------|
-| [QUICK_START.md](QUICK_START.md) | 5-minute setup guide |
-| [MAPS_SETUP.md](MAPS_SETUP.md) | Real-time maps + database integration |
-| [AUTH_SETUP.md](AUTH_SETUP.md) | Authentication & API key management |
-| [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) | Deploy to production (Vercel + Railway) |
-| [ARCHITECTURE.md](ARCHITECTURE.md) | System design & data flows |
-| [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md) | What was added in recent update |
-
-**Start here:** [QUICK_START.md](QUICK_START.md) ⬅️
-
-## 🏗️ Project Structure
-
-```
-AGTECHATHON-2.0-2k26/
-├── .github/
-│   └── workflows/              # GitHub Actions CI/CD
-│       └── deploy.yml          # Automated GitHub Pages deployment
-│
-├��─ server/                     # Backend (Node.js + Express)
-│   ├── controllers/            # API logic
-│   ├── services/               # Google Maps, Gemini, Weather APIs
-│   ├── routes/                 # API endpoints
-│   ├── middleware/             # Auth, file upload, error handling
-│   ├── config/                 # Environment configuration
-│   └── data/                   # Mock data
-│
-├── src/                        # Frontend (React + Vite)
-│   ├── pages/                  # Full-page components
-│   │   ├── LandingPage.jsx
-│   │   ├── DetectionPage.jsx
-│   │   ├── ChatbotPage.jsx
-│   │   ├── DashboardPage.jsx
-│   │   ├── SchemesPage.jsx     # 🗺️ Maps integration
-│   │   └── ...
-│   ├── components/             # Reusable UI components
-│   │   ├── MapComponent.jsx    # 🗺️ NEW - Interactive maps
-│   │   ├── Button.jsx
-│   │   ├── Card.jsx
-│   │   └── ...
-│   ├── services/               # API client functions
-│   ├── context/                # Global state management
-│   └── styles/                 # Tailwind CSS
-│
-├── public/                     # Static assets
-├── .env.example                # Environment template
-├── .env.local                  # Local environment (frontend)
+```text
+NullPointer/
+├── server/
+│   ├── config/
+│   ├── controllers/
+│   ├── data/
+│   ├── middleware/
+│   ├── routes/
+│   └── services/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── pages/
+│   ├── services/
+│   ├── translations/
+│   └── utils/
+├── index.html
 ├── package.json
 ├── vite.config.js
 ├── tailwind.config.js
-└── postcss.config.js
+└── Requirement.md
 ```
 
-## 🔌 Available API Endpoints
+## Pages
 
-### Public Endpoints
-```bash
-# Server Status
+- Landing Page: introduces the platform and routes users to login or registration
+- Auth Page: sign in, register, and demo session persistence
+- Dashboard: summary cards, recent detections, and action shortcuts
+- Detection: upload a crop leaf image and get an AI diagnosis
+- Weather: show local weather and disease-risk alerts
+- History: search past detections and export them
+- Reports: preview and download diagnosis reports
+- Schemes: list government schemes and expert resources
+- Chatbot: ask farming questions in local languages
+
+## API Surface
+
+### Health
+
+```http
 GET /api/health
+```
 
-# Location Data
-GET /api/nearby?latitude=18.52&longitude=73.85&type=fertilizer_store
-GET /api/place-details?placeId=ChIJrz...
+### Disease detection
 
-# Static Data
-GET /api/government-schemes
+```http
+POST /api/detect-disease
+POST /api/diagnoses
+```
+
+### History and reports
+
+```http
+GET /api/history
+GET /api/reports
+POST /api/reports
+```
+
+### Weather and schemes
+
+```http
 GET /api/weather-risk?location=Pune
+GET /api/government-schemes
 ```
 
-### Protected Endpoints (Requires JWT Token)
-```bash
-# Disease Detection
-POST /api/detect-disease        # Upload image
-GET  /api/history               # Get detection history
+### Chatbot
 
-# Chat & Chatbot
-POST /api/chatbot               # Send message
-POST /api/chatbot-session       # Start new session
-
-# Reports
-POST /api/reports               # Create report
-GET  /api/reports               # Get reports
+```http
+POST /api/chatbot
 ```
 
-## 🛠️ Development Commands
+## Setup
+
+### 1. Install dependencies
 
 ```bash
-# Start everything
+npm install
+```
+
+### 2. Configure environment
+
+Create `.env` from the example file and add the keys you want to use.
+
+```bash
+GEMINI_API_KEY=your_gemini_key
+GEMINI_MODEL=gemini-2.5-flash
+OPENWEATHERMAP_API_KEY=your_openweather_key
+OPENWEATHERMAP_BASE_URL=https://api.openweathermap.org/data/2.5/weather
+CLIENT_URL=http://localhost:5173
+PORT=4000
+VITE_API_URL=http://localhost:4000/api
+```
+
+### 3. Run the app
+
+```bash
 npm run dev:full
-
-# Backend only
-npm run server
-
-# Frontend only  
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Linting
-npm run lint
 ```
 
-## 🚀 Deployment
+Open:
 
-### Option 1: GitHub Pages (Recommended for Frontend)
+```text
+http://localhost:5173
+```
 
-The project is configured for automatic GitHub Pages deployment via GitHub Actions.
+## Development Commands
 
-**Setup:**
-1. Ensure repository is public
-2. Push to main branch
-3. GitHub Actions will automatically build and deploy
+```bash
+npm run dev       # Frontend only
+npm run server    # Backend only
+npm run dev:full   # Frontend + backend
+npm run build     # Production build
+npm run preview   # Preview build
+npm run lint      # Lint source files
+```
 
-**Access:** https://siddhantgosavi7.github.io/AGTECHATHON-2.0-2k26
+## Hackathon Flow
 
-### Option 2: Railway + Vercel
+1. Open the landing page
+2. Register or log in
+3. Go to Detection and upload a crop leaf image
+4. Review the disease name, confidence, treatment, and prevention tips
+5. Download the PDF report
+6. Check weather risk alerts for your location
+7. Review detection history from the dashboard or history page
+8. Browse government schemes and open official links
 
-1. **Deploy Backend to Railway**
-   ```bash
-   # Go to railway.app
-   # Connect GitHub repo
-   # Add environment variables
-   # Auto-deploys on push
-   ```
+## Requirement Coverage
 
-2. **Deploy Frontend to Vercel**
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
+Matches the requirement document in the current demo build:
 
-3. **Set Production URLs**
-   - Frontend: Update `VITE_API_URL` in Vercel env
-   - Backend: Update `CLIENT_URL` in Railway env
+- Landing page and auth entry points
+- Crop disease detection via AI analysis
+- Weather risk alerts
+- PDF report generation
+- Detection history and dashboard summary
+- Government schemes page
+- Hindi and Marathi language options in the UI
 
-**Full guide:** See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
+Remaining production gaps from the requirement:
 
-## 🗺️ New Features Added
+- Supabase Auth integration
+- Supabase storage/database persistence
+- Server-side translation integration
+- Real user identity/session management
 
-### Real-time Google Maps Integration
-✅ User geolocation detection  
-✅ Interactive map with 3 location types  
-✅ Distance calculations  
-✅ Real-time marker updates  
-✅ Location details (rating, hours, phone)  
-✅ Responsive design  
-
-### Database Ready
-✅ Supabase PostgreSQL integration  
-✅ SQL schema provided  
-✅ Real-time API capabilities  
-✅ User authentication  
-
-### Enhanced Security
-✅ JWT authentication middleware  
-✅ API key management  
-✅ CORS protection  
-✅ Environment variable validation  
-
-## 🔐 Security Best Practices
-
-- ✅ Never commit `.env` to git
-- ✅ Use `.env.example` as template
-- ✅ Rotate API keys monthly
-- ✅ Use HTTPS in production
-- ✅ Implement rate limiting
-- ✅ Validate all inputs
-- ✅ Use strong JWT secret
-
-## 📊 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
-| **Frontend** | React 18, Vite, Tailwind CSS |
-| **Backend** | Node.js, Express.js, Multer |
-| **Database** | Supabase (PostgreSQL) |
-| **APIs** | Google Maps, Google Gemini, Weather API |
-| **Authentication** | JWT tokens |
-| **Hosting** | GitHub Pages (frontend), Railway (backend) |
-| **Styling** | Tailwind CSS, Framer Motion |
-| **Maps** | Google Maps JavaScript API |
+|---|---|
+| Frontend | React, Vite, Tailwind CSS |
+| Backend | Node.js, Express |
+| AI | Gemini |
+| Weather | OpenWeatherMap |
+| PDF | jsPDF |
+| Storage | Local demo persistence now, Supabase planned |
+| Routing | React Router |
 
-## 🧪 Testing Locally
+## Notes for Demo Judges
 
-### 1. Test Disease Detection
-- Go to http://localhost:5173/detection
-- Upload a crop image
-- See AI diagnosis
+- The app is built around the hackathon use case, not a generic template
+- The UI is farmer-focused and mobile-friendly
+- The detection flow is designed to show end-to-end value quickly
+- The requirement doc can be used as the product spec for the next production step
 
-### 2. Test Maps
-- Go to http://localhost:5173/schemes
-- Allow geolocation
-- See nearby locations on map
-- Click markers for details
+## License
 
-### 3. Test Chatbot
-- Go to http://localhost:5173/chatbot
-- Ask agriculture questions
-- Try different languages
+Private project for hackathon use.
 
-### 4. Test Dashboard
-- Go to http://localhost:5173/dashboard
-- See scan history
-- View analytics
+## Contact
 
-## 🐛 Troubleshooting
-
-### Maps Not Loading
-```bash
-# 1. Check API key
-echo $GOOGLE_MAPS_API_KEY
-
-# 2. Verify in Google Cloud Console
-# - API is enabled
-# - Key is valid
-# - Domain whitelisted
-
-# 3. Check browser console
-# Press F12 and look for errors
-```
-
-### Backend Not Responding
-```bash
-# 1. Check running
-curl http://localhost:4000/api/health
-
-# 2. Check logs
-npm run server
-
-# 3. Verify port 4000 is free
-lsof -i :4000
-```
-
-### GitHub Pages Deployment
-```bash
-# 1. Check GitHub Actions logs
-# Go to Actions tab in GitHub repo
-
-# 2. Ensure proper permissions
-# Settings -> Actions -> Workflow permissions -> Read and write
-
-# 3. Verify main branch is default
-# Settings -> Branches -> Default branch
-```
-
-## 📈 Performance Tips
-
-- 🖼️ Optimize images before upload
-- 🔄 Enable browser caching
-- 📦 Use code splitting
-- 🚀 Deploy to CDN (Vercel auto-does this)
-- 🗜️ Compress API responses
-- ⚡ Use lazy loading
-
-## 🎯 Next Steps
-
-1. **Local Development**
-   ```bash
-   npm install
-   npm run dev:full
-   ```
-
-2. **Setup Database** (Optional now, required for production)
-   - Create Supabase account
-   - Run SQL from MAPS_SETUP.md
-   - Add keys to .env
-
-3. **Deploy to Production**
-   - Push to GitHub
-   - GitHub Actions deploys to Pages automatically
-   - Deploy backend to Railway
-
-4. **Setup Monitoring** (Production)
-   - Add error tracking (Sentry)
-   - Setup performance monitoring
-   - Configure alerts
-
-## 🤝 Contributing
-
-Contributions welcome! Please:
-1. Fork the repository
-2. Create feature branch
-3. Submit pull request
-
-## 📄 License
-
-Private project - All rights reserved.
-
-## 🆘 Support
-
-**Need help?**
-1. Check [QUICK_START.md](QUICK_START.md) for basic setup
-2. Review [ARCHITECTURE.md](ARCHITECTURE.md) to understand the system
-3. Check [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for production issues
-4. Review error messages in browser console (F12)
-
-## 🌟 Getting Started Checklist
-
-```
-☐ Clone repository
-☐ Run npm install
-☐ Get Google Maps API key
-☐ Get Gemini API key
-☐ Create .env file with keys
-☐ Run npm run dev:full
-☐ Open http://localhost:5173
-☐ Test all features
-☐ Read documentation
-☐ Deploy to production (when ready)
-```
-
-## 📞 Contact
-
-For production deployment support, reach out to your backend team.
-Prathamesh Chougale : calmeflea69@gmail.com
-
----
-
-**Happy farming with AI! 🌾🤖**
-
-Last updated: May 27, 2026
-Version: 1.0.0
+Prathamesh Chougale - calmeflea69@gmail.com

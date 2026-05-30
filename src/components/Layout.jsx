@@ -21,7 +21,9 @@ const links = [
 export function Layout({ children }) {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
-  const { darkMode, setDarkMode, offline, setOffline } = useApp();
+  const { darkMode, setDarkMode, offline, setOffline, user, logout, isAuthenticated } = useApp();
+
+  const visibleLinks = links.filter(([to]) => (to === '/auth' ? !isAuthenticated : true));
 
   return (
     <div className={darkMode ? 'dark' : ''}>
@@ -35,7 +37,7 @@ export function Layout({ children }) {
               <span className="leading-tight">{t('appName')}</span>
             </Link>
             <div className="hidden items-center gap-1 lg:flex">
-              {links.map(([to, key]) => (
+              {visibleLinks.map(([to, key]) => (
                 <NavLink
                   key={to}
                   to={to}
@@ -50,6 +52,11 @@ export function Layout({ children }) {
               ))}
             </div>
             <div className="hidden items-center gap-2 lg:flex">
+              {user && (
+                <div className="mr-2 rounded-full border border-leaf-200 bg-leaf-50 px-3 py-2 text-xs font-bold text-leaf-900 dark:border-leaf-900 dark:bg-leaf-950 dark:text-leaf-100">
+                  {user.name || user.email}
+                </div>
+              )}
               <LanguageSelector />
               <button
                 onClick={() => setOffline(!offline)}
@@ -57,6 +64,11 @@ export function Layout({ children }) {
               >
                 {offline ? 'Online' : 'Offline'}
               </button>
+              {user && (
+                <button onClick={logout} className="rounded-lg border border-slate-200 px-3 py-2 text-sm font-bold dark:border-white/10">
+                  Logout
+                </button>
+              )}
               <button
                 onClick={() => setDarkMode(!darkMode)}
                 className="grid h-10 w-10 place-items-center rounded-lg border border-slate-200 dark:border-white/10"
@@ -82,7 +94,7 @@ export function Layout({ children }) {
               </div>
               <LanguageSelector />
               <div className="grid gap-2">
-                {links.map(([to, key]) => (
+                {visibleLinks.map(([to, key]) => (
                   <NavLink
                     key={to}
                     onClick={() => setOpen(false)}
@@ -94,6 +106,17 @@ export function Layout({ children }) {
                     {t(`nav.${key}`)}
                   </NavLink>
                 ))}
+                {user && (
+                  <button
+                    onClick={() => {
+                      logout();
+                      setOpen(false);
+                    }}
+                    className="rounded-lg px-3 py-3 text-left font-semibold hover:bg-slate-100 dark:hover:bg-white/10"
+                  >
+                    Logout {user.name ? `(${user.name})` : ''}
+                  </button>
+                )}
               </div>
             </aside>
           </div>
