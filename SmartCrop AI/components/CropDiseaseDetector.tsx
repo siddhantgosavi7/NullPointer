@@ -11,13 +11,24 @@ type DetectionResponse = {
   disease: string;
   confidence: number;
   remedy?: Remedy | string;
+  advice?: string;
 };
 
-const API_URL = "http://127.0.0.1:8000/api/detect/";
+const API_URL = "http://127.0.0.1:8000/api/analyze/";
+
+const LANGUAGE_OPTIONS = [
+  { label: "Hindi", value: "Hindi", voiceLang: "hi-IN" },
+  { label: "Marathi", value: "Marathi", voiceLang: "mr-IN" },
+  { label: "Telugu", value: "Telugu", voiceLang: "te-IN" },
+  { label: "English", value: "English", voiceLang: "en-IN" },
+] as const;
+
+type LanguageValue = (typeof LANGUAGE_OPTIONS)[number]["value"];
 
 export default function CropDiseaseDetector() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageValue>("Hindi");
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -81,6 +92,7 @@ export default function CropDiseaseDetector() {
     try {
       const formData = new FormData();
       formData.append("image", selectedFile);
+      formData.append("language", selectedLanguage);
 
       const response = await fetch(API_URL, {
         method: "POST",
@@ -103,6 +115,25 @@ export default function CropDiseaseDetector() {
 
   const remedyText = typeof result?.remedy === "string" ? { organic: result.remedy } : result?.remedy;
 
+  const speakAdvice = () => {
+    if (!result?.advice || typeof window === "undefined" || !window.speechSynthesis) {
+      return;
+    }
+
+    const voiceLang = LANGUAGE_OPTIONS.find((option) => option.value === selectedLanguage)?.voiceLang ?? "en-IN";
+    const utterance = new SpeechSynthesisUtterance(result.advice);
+    utterance.lang = voiceLang;
+
+    const voices = window.speechSynthesis.getVoices();
+    const matchedVoice = voices.find((voice) => voice.lang?.toLowerCase().startsWith(voiceLang.toLowerCase()));
+    if (matchedVoice) {
+      utterance.voice = matchedVoice;
+    }
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,197,94,0.16),_transparent_35%),linear-gradient(180deg,_#f8fafc_0%,_#ecfdf5_100%)] px-4 py-10 text-slate-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
@@ -122,6 +153,24 @@ export default function CropDiseaseDetector() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="space-y-2">
+                  <label htmlFor="language" className="text-sm font-semibold text-slate-700">
+                    Advice language
+                  </label>
+                  <select
+                    id="language"
+                    value={selectedLanguage}
+                    onChange={(event) => setSelectedLanguage(event.target.value as LanguageValue)}
+                    className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+                  >
+                    {LANGUAGE_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 <div
                   onDragEnter={() => setIsDragging(true)}
                   onDragOver={(event) => {
@@ -245,6 +294,22 @@ export default function CropDiseaseDetector() {
                       </p>
                     </div>
                   </div>
+
+                  {result.advice ? (
+                    <div className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4">
+                      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-200">Gemini advice</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-100">{result.advice}</p>
+                    </div>
+                  ) : null}
+
+                  <button
+                    type="button"
+                    onClick={speakAdvice}
+                    disabled={!result?.advice}
+                    className="inline-flex w-full items-center justify-center rounded-2xl border border-emerald-300/30 bg-emerald-400/15 px-5 py-3 text-sm font-semibold text-emerald-100 transition hover:bg-emerald-400/25 disabled:cursor-not-allowed disabled:opacity-50"
+                  >
+                    Speak Advice
+                  </button>
                 </div>
               ) : (
                 <div className="flex h-full min-h-[320px] items-center justify-center rounded-3xl border border-dashed border-white/15 bg-white/5 p-6 text-center text-sm text-slate-300">

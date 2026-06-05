@@ -1,7 +1,5 @@
 import os
 
-import google.generativeai as genai
-
 
 def get_farmer_advice(disease_name: str, language: str) -> str:
     supported_languages = {
@@ -19,6 +17,8 @@ def get_farmer_advice(disease_name: str, language: str) -> str:
         return f"Gemini API key is missing. Unable to generate farmer advice in {requested_language}."
 
     try:
+        import google.generativeai as genai
+
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel(
             model_name="gemini-1.5-flash",

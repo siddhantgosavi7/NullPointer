@@ -1,11 +1,8 @@
-from pathlib import Path
 import os
+from pathlib import Path
 from typing import Dict, Tuple
 
-import google.generativeai as genai
-import torch
 from PIL import Image
-from torchvision.models import MobileNet_V3_Large_Weights, mobilenet_v3_large
 
 
 INDIAN_CROP_DISEASE_CLASSES = [
@@ -47,14 +44,32 @@ REMEDY_MAP: Dict[str, Dict[str, str]] = {
         ),
     },
 }
+_model = None
+_transform = None
 
 
-_weights = MobileNet_V3_Large_Weights.DEFAULT
-_model = mobilenet_v3_large(weights=_weights)
-_model.eval()
+def _load_model() -> tuple[object, object]:
+    global _model, _transform
 
-# Standard ImageNet preprocessing for MobileNetV3-Large.
-_transform = _weights.transforms()
+    if _model is not None and _transform is not None:
+        return _model, _transform
+
+    try:
+        import torch
+        from torchvision.models import MobileNet_V3_Large_Weights, mobilenet_v3_large
+    except ImportError as exc:
+        raise RuntimeError(
+            "Torch and torchvision are required for crop disease prediction. "
+            "Install the backend dependencies before calling predict_disease()."
+        ) from exc
+
+    weights = MobileNet_V3_Large_Weights.DEFAULT
+    model = mobilenet_v3_large(weights=weights)
+    model.eval()
+
+    _model = model
+    _transform = weights.transforms()
+    return _model, _transform
 
 
 def predict_disease(image_path: str) -> Tuple[str, float]:
@@ -62,11 +77,14 @@ def predict_disease(image_path: str) -> Tuple[str, float]:
     if not image_file.exists():
         raise FileNotFoundError(f"Image not found: {image_path}")
 
+    model, transform = _load_model()
+    import torch
+
     image = Image.open(image_file).convert("RGB")
-    input_tensor = _transform(image).unsqueeze(0)
+    input_tensor = transform(image).unsqueeze(0)
 
     with torch.no_grad():
-        logits = _model(input_tensor)
+        logits = model(input_tensor)
         probabilities = torch.softmax(logits, dim=1)
         confidence_tensor, predicted_index = torch.max(probabilities, dim=1)
 
@@ -101,6 +119,8 @@ def get_farmer_advice(disease_name: str, language: str) -> str:
         return f"Gemini API key is missing. Unable to generate farmer advice in {requested_language}."
 
     try:
+        import google.generativeai as genai
+
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel(
             model_name="gemini-1.5-flash",
