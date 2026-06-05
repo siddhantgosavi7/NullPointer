@@ -6,14 +6,17 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from api.classifier import get_remedy, predict_disease
+from api.classifier import predict_disease
+from api.consultant import get_farmer_advice
 
 
-class CropDiseaseUploadView(APIView):
+class AnalyzeCropView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, *args, **kwargs):
         uploaded_image = request.FILES.get("image")
+        language = request.data.get("language", "Hindi")
+
         if uploaded_image is None:
             return Response(
                 {"error": "Please upload an image file using the 'image' field."},
@@ -30,15 +33,20 @@ class CropDiseaseUploadView(APIView):
                 temp_path = temp_file.name
 
             disease, confidence = predict_disease(temp_path)
+            advice = get_farmer_advice(disease, language)
 
             return Response(
                 {
                     "disease": disease,
-                    "confidence": round(confidence, 4),
-                    "remedy": get_remedy(disease),
+                    "confidence": round(confidence, 2),
+                    "advice": advice,
                 },
                 status=status.HTTP_200_OK,
             )
         finally:
             if temp_path:
                 Path(temp_path).unlink(missing_ok=True)
+
+
+class CropDiseaseUploadView(AnalyzeCropView):
+    pass
