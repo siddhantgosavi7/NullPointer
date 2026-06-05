@@ -34,19 +34,27 @@ KrishiMitra AI is a Vite + React agriculture dashboard for farmers. It includes 
 
 ## Run the project
 
-1. Install dependencies.
+
+1. Clone the repository.
+
+```bash
+git clone https://github.com/AGTechathon-2-0/NullPointer.git
+cd NullPointer
+```
+
+2. Install dependencies.
 
 ```bash
 npm install
 ```
 
-2. Start the Vite dev server.
+3. Start the Vite dev server.
 
 ```bash
 npm run dev
 ```
 
-3. Open the app in your browser.
+4. Open the app in your browser.
 
 ```text
 http://localhost:5173/
