@@ -1,3 +1,7 @@
 from django.urls import path
 
-urlpatterns = []
+from api.views import CropDiseaseUploadView
+
+urlpatterns = [
+	path("detect/", CropDiseaseUploadView.as_view(), name="crop-disease-detect"),
+]
