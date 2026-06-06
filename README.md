@@ -33,49 +33,21 @@ KrishiMitra AI is a Vite + React agriculture dashboard for farmers. It includes 
 - A Firebase project configured for Auth and Firestore
 - Optional: `VITE_GROQ_API_KEY` for the AI Assistant page
 
-## Local backend service
+## Run the project
 
-This project now includes a local FastAPI backend under `backend/` for AI-powered disease detection, crop analysis, and yield prediction.
-
-1. Activate the Python virtual environment.
-
-```powershell
-& .\.venv\Scripts\Activate.ps1
-```
-
-2. Install backend dependencies if needed.
-
-```powershell
-pip install -r backend/requirements.txt
-```
-
-3. Start the FastAPI backend.
-
-```powershell
-uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-4. Verify the backend health endpoint.
-
-```powershell
-curl http://127.0.0.1:8000/health
-```
-
-## Run the frontend
-
-1. Install frontend dependencies.
+1. Install dependencies.
 
 ```bash
 npm install
 ```
 
-2. Start the Vite dev server.
+3. Start the Vite dev server.
 
 ```bash
 npm run dev
 ```
 
-3. Open the app in your browser.
+4. Open the app in your browser.
 
 ```text
 http://localhost:5173/
