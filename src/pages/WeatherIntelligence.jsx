@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { CloudRain, Sun, Wind, Droplets, Cloud, CloudLightning, MapPin, Search, X } from 'lucide-react';
 import { useOutletContext } from 'react-router-dom';
 import maplibregl from 'maplibre-gl';
@@ -84,6 +85,7 @@ const MapContainer = ({ lat, lon, onClose }) => {
 };
 
 const WeatherIntelligence = () => {
+  const { t } = useTranslation();
   const { weatherData, loading, error } = useOutletContext();
   const [showMap, setShowMap] = useState(false);
 
@@ -138,7 +140,7 @@ const WeatherIntelligence = () => {
               <MapPin size={18} className="text-accent" />
               <span>{weatherData.location}</span>
               <span className="mx-4 opacity-30">|</span>
-              <span>{weatherData.condition} Expected</span>
+              <span>{weatherData.condition} {t('weatherIntelligence.expectedLabel')}</span>
             </div>
           </div>
         </section>
@@ -159,13 +161,13 @@ const WeatherIntelligence = () => {
 
         {/* SECTION 3 - AI FARM ADVISOR */}
         <section className="px-6 md:px-16 lg:px-24 py-32 mt-12 bg-gradient-to-b from-transparent to-[rgba(10,18,10,0.6)]">
-          <span className="block text-xs tracking-[4px] uppercase text-accent mb-8">AI Recommendation</span>
+          <span className="block text-xs tracking-[4px] uppercase text-accent mb-8">{t('weatherIntelligence.aiRecommendation')}</span>
           <p className="font-serif text-3xl md:text-5xl lg:text-6xl leading-tight md:leading-snug max-w-5xl text-[rgba(240,250,220,0.9)]">
             {weatherData.condition && weatherData.condition.toLowerCase().includes('rain') 
-              ? "Do not spray pesticides today. Heavy rainfall expected. Expected effectiveness reduction: 67%. Protect harvested crops immediately."
+              ? t('weatherIntelligence.advice.rain')
               : weatherData.temp > 35 
-              ? "Heat stress risk is critical. Increase irrigation cycles by 20% today. Avoid field operations during peak sunlight hours."
-              : "Conditions are optimal for standard field operations. Soil moisture is balancing well with current evaporation rates."}
+              ? t('weatherIntelligence.advice.heat')
+              : t('weatherIntelligence.advice.optimal')}
           </p>
         </section>
 
@@ -248,8 +250,8 @@ const WeatherIntelligence = () => {
                 
                 <div className="relative z-10 flex flex-col items-center transition-transform duration-700 group-hover:scale-105">
                   <Search size={48} className="text-accent mb-6 opacity-80" strokeWidth={1} />
-                  <h3 className="font-serif text-3xl md:text-5xl text-[rgba(240,250,220,0.9)] mb-4">Command Center</h3>
-                  <p className="text-[rgba(215,230,190,0.5)] tracking-[4px] uppercase text-sm">Click to Initialize Interactive Radar</p>
+                  <h3 className="font-serif text-3xl md:text-5xl text-[rgba(240,250,220,0.9)] mb-4">{t('weatherIntelligence.commandCenter')}</h3>
+                  <p className="text-[rgba(215,230,190,0.5)] tracking-[4px] uppercase text-sm">{t('weatherIntelligence.clickToInitializeRadar')}</p>
                 </div>
 
                 {/* Radar Sweep Effect Placeholder */}

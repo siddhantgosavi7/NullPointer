@@ -1,14 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Send, Mic, Sparkles, Sprout, CloudRain, Droplets, TrendingUp, AlertTriangle, FileText, ImagePlus, X, Volume2, Square } from 'lucide-react';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useOutletContext } from 'react-router-dom';
 
 const AIAssistant = () => {
+  const { t } = useTranslation();
   const { weatherData } = useOutletContext();
   
   const [messages, setMessages] = useState([
     { id: 1, type: 'ai', text: 'Namaste! I am KrishiMitra Intelligence. I have analyzed your farm data. How can I assist you today?' }
   ]);
+
+  useEffect(() => {
+    setMessages((prev) => prev.map((message) => message.id === 1 && message.type === 'ai'
+      ? { ...message, text: t('aiAssistant.welcomeMessage') }
+      : message
+    ));
+  }, [t]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -173,10 +182,10 @@ const AIAssistant = () => {
   };
 
   const quickActions = [
-    { icon: <Sprout size={20} className="text-green-400" />, title: "Scan Crop Disease", prompt: "I need to scan my crop for diseases. What are the common signs of rust in wheat, and how should I treat it?" },
-    { icon: <CloudRain size={20} className="text-blue-400" />, title: "Analyze Weather", prompt: "Analyze the current weather impact on my crops. Should I delay any farming activities?" },
-    { icon: <Droplets size={20} className="text-cyan-400" />, title: "Irrigation Plan", prompt: "Generate an irrigation plan for the next 3 days considering current soil moisture and weather." },
-    { icon: <TrendingUp size={20} className="text-yellow-400" />, title: "Market Prices", prompt: "What are the predicted market prices for Soybean over the next month?" },
+    { icon: <Sprout size={20} className="text-green-400" />, title: t('aiAssistant.quickActions.scanCropDisease'), prompt: t('aiAssistant.quickActions.scanCropDiseasePrompt') },
+    { icon: <CloudRain size={20} className="text-blue-400" />, title: t('aiAssistant.quickActions.analyzeWeather'), prompt: t('aiAssistant.quickActions.analyzeWeatherPrompt') },
+    { icon: <Droplets size={20} className="text-cyan-400" />, title: t('aiAssistant.quickActions.irrigationPlan'), prompt: t('aiAssistant.quickActions.irrigationPlanPrompt') },
+    { icon: <TrendingUp size={20} className="text-yellow-400" />, title: t('aiAssistant.quickActions.marketPrices'), prompt: t('aiAssistant.quickActions.marketPricesPrompt') },
   ];
 
   return (
@@ -187,7 +196,7 @@ const AIAssistant = () => {
         <div className="glass-card flex-1 p-5 sticky top-0 h-[calc(100vh-120px)] overflow-y-auto custom-scrollbar flex flex-col border-[rgba(140,180,120,0.2)]">
           <div className="flex items-center gap-2 mb-6 text-accent/80 text-xs uppercase tracking-[3px] font-medium border-b border-[rgba(140,180,120,0.1)] pb-4">
             <FileText size={16} />
-            <span>Recent Farm Cases</span>
+            <span>{t('aiAssistant.recentFarmCases')}</span>
           </div>
           
           <div className="space-y-6">
@@ -222,17 +231,17 @@ const AIAssistant = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <div className="md:col-span-2 glass-card p-6 border-[rgba(230,245,120,0.2)] bg-gradient-to-br from-[rgba(15,25,15,0.7)] to-[rgba(5,10,5,0.8)] relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 rounded-full blur-[40px]"></div>
-            <span className="text-[10px] tracking-[3px] uppercase text-accent mb-2 block relative z-10">Farm Intelligence Hero</span>
-            <h3 className="text-2xl font-serif text-white mb-4 relative z-10">Today's Farm Summary</h3>
+            <span className="text-[10px] tracking-[3px] uppercase text-accent mb-2 block relative z-10">{t('aiAssistant.heroLabel')}</span>
+            <h3 className="text-2xl font-serif text-white mb-4 relative z-10">{t('aiAssistant.heroTitle')}</h3>
             <p className="text-sm text-body/80 font-light leading-relaxed relative z-10">
-              Soil moisture is holding steady at 42%. Disease risk is elevated in Plot C due to high humidity. The market for Soybean is showing a 4% upward trend.
+              {t('aiAssistant.heroDescription')}
             </p>
           </div>
           
           <div className="glass-card p-6 flex flex-col justify-center border-l-[3px] border-l-red-500/50 hover:bg-[rgba(20,10,10,0.4)] transition-colors">
             <div className="flex items-center gap-2 mb-2">
               <AlertTriangle className="text-red-400 w-4 h-4" />
-              <span className="text-[10px] tracking-wider uppercase text-red-400/80">Disease Risk</span>
+              <span className="text-[10px] tracking-wider uppercase text-red-400/80">{t('aiAssistant.diseaseRisk')}</span>
             </div>
             <span className="text-2xl text-white font-light">Elevated</span>
             <span className="text-xs text-body/60 mt-1">Plot C (Corn)</span>
@@ -241,7 +250,7 @@ const AIAssistant = () => {
           <div className="glass-card p-6 flex flex-col justify-center border-l-[3px] border-l-green-500/50 hover:bg-[rgba(10,20,10,0.4)] transition-colors">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="text-green-400 w-4 h-4" />
-              <span className="text-[10px] tracking-wider uppercase text-green-400/80">Market Opp</span>
+              <span className="text-[10px] tracking-wider uppercase text-green-400/80">{t('aiAssistant.marketOpp')}</span>
             </div>
             <span className="text-2xl text-white font-light">Strong</span>
             <span className="text-xs text-body/60 mt-1">Soybean ↑ 4%</span>
@@ -255,9 +264,9 @@ const AIAssistant = () => {
               <Sparkles className="text-accent w-5 h-5" />
             </div>
             <div>
-              <span className="text-[10px] tracking-[3px] uppercase text-accent/80 block mb-1">KrishiMitra Proactive Insight</span>
+              <span className="text-[10px] tracking-[3px] uppercase text-accent/80 block mb-1">{t('aiAssistant.proactiveInsight')}</span>
               <p className="text-sm md:text-base font-medium text-[rgba(240,250,220,0.9)]">
-                Heavy rainfall expected at 6:00 PM. Delay pesticide application.
+                {t('aiAssistant.proactiveAdvice')}
               </p>
             </div>
           </div>

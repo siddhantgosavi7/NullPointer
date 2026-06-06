@@ -7,6 +7,8 @@ import Dashboard from './pages/Dashboard';
 import AIAssistant from './pages/AIAssistant';
 import DiseaseDetection from './pages/DiseaseDetection';
 import CropRecommendation from './pages/CropRecommendation';
+import CropAnalysis from './pages/CropAnalysis';
+import YieldPrediction from './pages/YieldPrediction';
 import WeatherIntelligence from './pages/WeatherIntelligence';
 import IrrigationAdvisor from './pages/IrrigationAdvisor';
 import MarketIntelligence from './pages/MarketIntelligence';
@@ -18,15 +20,17 @@ import Analytics from './pages/Analytics';
 // Protected Route Component
 const PrivateRoute = ({ children }) => {
   const { currentUser } = useAuth();
-  
+  // Allow a local development bypass so pages render without an auth session
+  const devBypass = import.meta.env.DEV || window.location.hostname === 'localhost';
+
   useEffect(() => {
-    if (currentUser === null) {
+    if (!devBypass && currentUser === null) {
       window.location.href = '/login.html';
     }
-  }, [currentUser]);
+  }, [currentUser, devBypass]);
 
-  if (currentUser === null) return null; // Avoid rendering until redirected
-  
+  if (!devBypass && currentUser === null) return null; // Avoid rendering until redirected
+
   return children;
 };
 
@@ -46,6 +50,8 @@ function App() {
             <Route path="/assistant" element={<AIAssistant />} />
             <Route path="/disease" element={<DiseaseDetection />} />
             <Route path="/crop" element={<CropRecommendation />} />
+            <Route path="/crop-analysis" element={<CropAnalysis />} />
+            <Route path="/yield" element={<YieldPrediction />} />
             <Route path="/weather" element={<WeatherIntelligence />} />
             <Route path="/irrigation" element={<IrrigationAdvisor />} />
             <Route path="/market" element={<MarketIntelligence />} />

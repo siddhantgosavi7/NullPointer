@@ -1,20 +1,22 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { User, MapPin, Phone, Mail, Award, Sprout, TrendingUp, ShieldCheck, Edit3 } from 'lucide-react';
 
 const FarmerProfile = () => {
+  const { t } = useTranslation();
   return (
     <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 h-full flex flex-col gap-6">
       
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mt-8 mb-4">
         <div>
-          <span className="text-[10px] font-medium tracking-[4px] uppercase text-[rgba(210,230,160,0.65)]">Personal Identity</span>
+          <span className="text-[10px] font-medium tracking-[4px] uppercase text-[rgba(210,230,160,0.65)]">{t('farmerProfile.personalIdentity')}</span>
           <h1 className="font-serif text-3xl md:text-5xl text-heading mt-2">
-            Farmer <em className="italic text-accent drop-shadow-[0_0_30px_rgba(230,245,120,0.2)]">Profile</em>
+            {t('farmerProfile.titlePrefix')} <em className="italic text-accent drop-shadow-[0_0_30px_rgba(230,245,120,0.2)]">{t('farmerProfile.titleHighlight')}</em>
           </h1>
         </div>
         <button className="glass-button px-6 py-2 flex items-center gap-2">
           <Edit3 size={14} />
-          <span className="text-[10px] font-medium tracking-[1.5px] uppercase">Edit Profile</span>
+          <span className="text-[10px] font-medium tracking-[1.5px] uppercase">{t('farmerProfile.editProfile')}</span>
         </button>
       </div>
 
@@ -50,25 +52,25 @@ const FarmerProfile = () => {
 
           <div className="glass-card p-6">
             <h3 className="font-serif text-lg text-heading mb-4 flex items-center gap-2">
-              <Award className="text-accent" size={18} /> Credentials
+              <Award className="text-accent" size={18} /> {t('farmerProfile.credentials')}
             </h3>
             <div className="space-y-4">
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-label mb-1">Aadhar Linked</p>
+                <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.aadharLinked')}</p>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={14} className="text-[rgba(180,210,140,0.9)]" />
                   <span className="text-sm font-medium text-heading">Yes (XXXX-XXXX-1234)</span>
                 </div>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-label mb-1">Bank Account</p>
+                <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.bankAccount')}</p>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={14} className="text-[rgba(180,210,140,0.9)]" />
                   <span className="text-sm font-medium text-heading">SBI Ending in 4098</span>
                 </div>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-label mb-1">PM-Kisan Status</p>
+                <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.pmKisanStatus')}</p>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={14} className="text-[rgba(180,210,140,0.9)]" />
                   <span className="text-sm font-medium text-heading">Active</span>
@@ -84,36 +86,36 @@ const FarmerProfile = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="glass-card p-6 border border-[rgba(180,210,140,0.2)] bg-gradient-to-br from-[rgba(20,35,20,0.4)] to-[rgba(10,15,10,0.6)]">
               <Sprout size={24} className="text-accent mb-4 opacity-70" />
-              <p className="text-[10px] uppercase tracking-wider text-label mb-1">Total Land</p>
+              <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.totalLand')}</p>
               <h3 className="font-serif text-3xl text-heading">4.5 <span className="text-base font-sans font-light text-body">Acres</span></h3>
             </div>
             <div className="glass-card p-6 border border-[rgba(180,210,140,0.2)] bg-gradient-to-br from-[rgba(20,35,20,0.4)] to-[rgba(10,15,10,0.6)]">
               <TrendingUp size={24} className="text-accent mb-4 opacity-70" />
-              <p className="text-[10px] uppercase tracking-wider text-label mb-1">Avg. Yield / Yr</p>
+              <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.avgYieldPerYear')}</p>
               <h3 className="font-serif text-3xl text-heading">180 <span className="text-base font-sans font-light text-body">Quintals</span></h3>
             </div>
             <div className="glass-card p-6 border border-[rgba(180,210,140,0.2)] bg-gradient-to-br from-[rgba(20,35,20,0.4)] to-[rgba(10,15,10,0.6)]">
               <ShieldCheck size={24} className="text-accent mb-4 opacity-70" />
-              <p className="text-[10px] uppercase tracking-wider text-label mb-1">Soil Health Score</p>
+              <p className="text-[10px] uppercase tracking-wider text-label mb-1">{t('farmerProfile.soilHealthScore')}</p>
               <h3 className="font-serif text-3xl text-heading">85<span className="text-base font-sans font-light text-accent">/100</span></h3>
             </div>
           </div>
 
           <div className="glass-card p-6 flex-1">
             <h3 className="font-serif text-xl text-heading mb-6 flex items-center justify-between">
-              Crop History
-              <button className="text-[10px] font-sans tracking-widest uppercase text-accent hover:underline decoration-accent/30 underline-offset-4">Download Report</button>
+              {t('farmerProfile.cropHistory')}
+              <button className="text-[10px] font-sans tracking-widest uppercase text-accent hover:underline decoration-accent/30 underline-offset-4">{t('farmerProfile.downloadReport')}</button>
             </h3>
             
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="border-b border-[rgba(140,180,120,0.1)]">
-                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">Season</th>
-                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">Crop</th>
-                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">Area</th>
-                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">Yield</th>
-                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium text-right">Status</th>
+                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">{t('farmerProfile.table.season')}</th>
+                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">{t('farmerProfile.table.crop')}</th>
+                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">{t('farmerProfile.table.area')}</th>
+                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium">{t('farmerProfile.table.yield')}</th>
+                    <th className="py-3 px-4 text-[10px] uppercase tracking-wider text-label font-medium text-right">{t('farmerProfile.table.status')}</th>
                   </tr>
                 </thead>
                 <tbody className="text-sm font-light text-heading">

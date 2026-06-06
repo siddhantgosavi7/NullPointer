@@ -29,12 +29,41 @@ KrishiMitra AI is a Vite + React agriculture dashboard for farmers. It includes 
 
 - Node.js 18 or newer
 - npm
+- Python 3.10 or newer
 - A Firebase project configured for Auth and Firestore
 - Optional: `VITE_GROQ_API_KEY` for the AI Assistant page
 
-## Run the project
+## Local backend service
 
-1. Install dependencies.
+This project now includes a local FastAPI backend under `backend/` for AI-powered disease detection, crop analysis, and yield prediction.
+
+1. Activate the Python virtual environment.
+
+```powershell
+& .\.venv\Scripts\Activate.ps1
+```
+
+2. Install backend dependencies if needed.
+
+```powershell
+pip install -r backend/requirements.txt
+```
+
+3. Start the FastAPI backend.
+
+```powershell
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+4. Verify the backend health endpoint.
+
+```powershell
+curl http://127.0.0.1:8000/health
+```
+
+## Run the frontend
+
+1. Install frontend dependencies.
 
 ```bash
 npm install
@@ -54,7 +83,7 @@ http://localhost:5173/login.html
 http://localhost:5173/app/
 ```
 
-## Build and check
+## Production build
 
 ```bash
 npm run build
@@ -67,6 +96,7 @@ npm run lint
 - The React app is mounted from `src/main.jsx`.
 - App routing uses a `/app` basename, so deep links should be opened through the Vite server.
 - `vite.config.js` is set up for multiple HTML entry points: `index.html`, `login.html`, and `app/index.html`.
+- The frontend communicates with a local backend API at `http://localhost:8000` by default.
 
 ## Repository structure
 
@@ -90,7 +120,7 @@ public/
 - Do not open the HTML files directly from disk for normal use; run the project with Vite.
 - The dashboard is protected. If the user is not signed in, the app redirects to `/login.html`.
 - If the AI Assistant needs external access, add the Groq key through `VITE_GROQ_API_KEY`.
-- There is no backend service in this repository; the app is frontend-first and uses Firebase for persistence and auth.
+- A local backend service is available in `backend/` for AI model inference and should run alongside the frontend for disease, crop, and yield features.
 
 ## Upcoming
 
