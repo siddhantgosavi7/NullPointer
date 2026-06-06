@@ -102,14 +102,14 @@ const MarketIntelligence = () => {
             <h3 className="font-serif text-lg text-heading mb-4">Mandi Comparison</h3>
             <div className="space-y-3">
               {[
-                { name: 'Pune APMC', price: 4450, trend: 'up' },
-                { name: 'Latur', price: 4380, trend: 'up' },
-                { name: 'Nashik', price: 4200, trend: 'down' },
+                { name: 'Pune APMC', price: 4450, trend: 'up', distance: 15 },
+                { name: 'Latur', price: 4380, trend: 'up', distance: 280 },
+                { name: 'Nashik', price: 4200, trend: 'down', distance: 210 },
               ].map((mandi, i) => (
                 <div key={i} className="flex justify-between items-center p-3 rounded-xl bg-[rgba(10,15,10,0.3)] border border-[rgba(140,180,120,0.1)] hover:bg-[rgba(20,30,20,0.4)] transition-colors cursor-pointer">
                   <div>
                     <h4 className="text-sm font-medium text-heading">{mandi.name}</h4>
-                    <p className="text-[10px] text-body uppercase tracking-wider">Distance: {Math.floor(Math.random() * 100 + 10)} km</p>
+                    <p className="text-[10px] text-body uppercase tracking-wider">Distance: {mandi.distance} km</p>
                   </div>
                   <div className="text-right flex items-center gap-2">
                     <span className="text-sm font-medium text-heading">₹{mandi.price}</span>

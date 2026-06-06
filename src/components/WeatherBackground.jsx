@@ -41,9 +41,9 @@ const WeatherBackground = ({ condition }) => {
               key={i}
               className="absolute top-[-10%] w-[1px] h-[15vh] bg-gradient-to-b from-transparent via-[rgba(180,210,140,0.3)] to-transparent animate-rain"
               style={{
-                left: `${Math.random() * 100}%`,
-                animationDuration: `${0.5 + Math.random() * 0.5}s`,
-                animationDelay: `${Math.random() * 2}s`
+                left: `${(i * 37) % 100}%`,
+                animationDuration: `${0.5 + ((i * 13) % 5) * 0.1}s`,
+                animationDelay: `${((i * 7) % 4) * 0.5}s`
               }}
             />
           ))}

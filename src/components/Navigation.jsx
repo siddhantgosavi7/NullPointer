@@ -5,13 +5,15 @@ import { Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import i18n from '../i18n';
 
-const Navigation = () => {
+const Navigation = ({ scrolled: propScrolled }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [language, setLanguage] = useState(i18n.language || 'en');
   const location = useLocation();
   const { currentUser, logout } = useAuth();
   const { t } = useTranslation();
+
+  const isScrolled = propScrolled !== undefined ? propScrolled : scrolled;
 
   useEffect(() => {
     const handleLang = (lng) => setLanguage(lng);
@@ -44,7 +46,7 @@ const Navigation = () => {
     <>
       <nav 
         className={`fixed top-6 left-0 right-0 z-50 transition-all duration-500 ease-in-out px-10 ${
-          scrolled ? 'opacity-90' : 'opacity-100'
+          isScrolled ? 'opacity-90' : 'opacity-100'
         }`}
         style={{ pointerEvents: 'none' }}
       >

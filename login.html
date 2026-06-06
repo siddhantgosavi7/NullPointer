@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Digital Oasis — Sign In</title>
+<title>KrishiMitra — Sign In</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -268,7 +268,7 @@
 
     <!-- Headings (swap via JS) -->
     <h1 class="card-heading" id="cardHeading">Welcome <em>Back</em></h1>
-    <p class="card-subtext" id="cardSub">Sign in to your sanctuary</p>
+    <p class="card-subtext" id="cardSub">Sign in to your KrishiMitra account</p>
 
     <!-- Tab switcher -->
     <div class="tab-row">
@@ -301,7 +301,7 @@
 
       <button class="btn-submit" id="btnLogin" onclick="handleLogin()">
         <div class="spinner"></div>
-        <span class="btn-text">Enter the Oasis</span>
+        <span class="btn-text">Sign In</span>
       </button>
     </div>
 
@@ -337,12 +337,12 @@
 
       <button class="btn-submit" id="btnRegister" onclick="handleRegister()">
         <div class="spinner"></div>
-        <span class="btn-text">Join the Oasis</span>
+        <span class="btn-text">Register</span>
       </button>
     </div>
 
     <div class="divider"></div>
-    <p class="card-footer" id="cardFooter">New here? Your oasis awaits.</p>
+    <p class="card-footer" id="cardFooter">New here? Create your account.</p>
   </div>
 </div>
 
@@ -354,9 +354,9 @@
     document.getElementById('tabRegister').classList.toggle('active', !isLogin);
     document.getElementById('panelLogin').classList.toggle('active', isLogin);
     document.getElementById('panelRegister').classList.toggle('active', !isLogin);
-    document.getElementById('cardHeading').innerHTML = isLogin ? 'Welcome <em>Back</em>' : 'Join the <em>Oasis</em>';
-    document.getElementById('cardSub').textContent = isLogin ? 'Sign in to your sanctuary' : 'Create your sanctuary account';
-    document.getElementById('cardFooter').textContent = isLogin ? 'New here? Your oasis awaits.' : 'Already have an account? Sign in above.';
+    document.getElementById('cardHeading').innerHTML = isLogin ? 'Welcome <em>Back</em>' : 'Join <em>KrishiMitra</em>';
+    document.getElementById('cardSub').textContent = isLogin ? 'Sign in to your KrishiMitra account' : 'Create your KrishiMitra account';
+    document.getElementById('cardFooter').textContent = isLogin ? 'New here? Create your account.' : 'Already have an account? Sign in above.';
   }
 
   // ── Toggle password visibility ────────────────────────────────
@@ -402,7 +402,7 @@
     btn.classList.add('loading');
     window.doFirebaseLogin(email, pass).then(() => {
       btn.classList.remove('loading');
-      console.log('[Oasis] Login →', email);
+      console.log('[KrishiMitra] Login →', email);
       window.location.href = '/app/';
     }).catch(error => {
       btn.classList.remove('loading');
@@ -429,7 +429,7 @@
     window.doFirebaseRegister(email, pass, name).then(() => {
       btn.classList.remove('loading');
       showMsg(succ, `Welcome, ${name}! Your sanctuary is ready.`, 'success');
-      console.log('[Oasis] Register →', email);
+      console.log('[KrishiMitra] Register →', email);
       window.location.href = '/app/';
     }).catch(error => {
       btn.classList.remove('loading');

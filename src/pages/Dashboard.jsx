@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { CloudRain, Droplets, AlertTriangle, Sprout, TrendingUp, Sparkles, Activity, Clock, ShieldAlert, ArrowRight } from 'lucide-react';
+import { CloudRain, Droplets, AlertTriangle, Sprout, TrendingUp, Sparkles, Activity, Clock, ShieldAlert, ArrowRight, Leaf } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {

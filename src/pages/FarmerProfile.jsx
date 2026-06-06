@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { User, MapPin, Phone, Mail, Award, Sprout, TrendingUp, ShieldCheck, Edit3 } from 'lucide-react';
+import { User, MapPin, Phone, Mail, Award, Sprout, TrendingUp, ShieldCheck, Edit3, CheckCircle2 } from 'lucide-react';
 
 const FarmerProfile = () => {
   const { t } = useTranslation();

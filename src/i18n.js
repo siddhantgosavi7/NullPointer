@@ -62,10 +62,19 @@ i18n
       escapeValue: false,
     },
     react: {
-      useSuspense: true,
+      useSuspense: false,
     },
     resources: {
       en: {
+        translation: {},
+      },
+      hi: {
+        translation: {},
+      },
+      mr: {
+        translation: {},
+      },
+      de: {
         translation: {},
       },
     },

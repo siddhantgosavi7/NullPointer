@@ -147,6 +147,18 @@ const DiseaseDetection = () => {
                   </div>
                 ) : result ? (
                   <div className="flex items-center gap-4 animate-in fade-in slide-in-from-bottom-4">
+                    {result.is_healthy ? (
+                      <>
+                        <div className="w-12 h-12 rounded-full bg-[rgba(140,180,120,0.2)] border border-[rgba(180,210,140,0.3)] flex items-center justify-center text-accent">
+                          <CheckCircle2 size={24} />
+                        </div>
+                        <div>
+                          <h3 className="font-serif text-2xl text-heading text-[rgba(230,245,120,1)] drop-shadow-[0_0_10px_rgba(180,210,140,0.4)]">{result.disease}</h3>
+                          <p className="text-xs font-light tracking-wide text-accent uppercase mt-1">Crop Health Stable</p>
+                        </div>
+                      </>
+                    ) : (
+                      <>
                         <div className="w-12 h-12 rounded-full bg-[rgba(180,60,40,0.2)] border border-[rgba(220,80,60,0.3)] flex items-center justify-center text-[rgba(255,160,140,0.9)]">
                           <ShieldAlert size={24} />
                         </div>
@@ -154,7 +166,9 @@ const DiseaseDetection = () => {
                           <h3 className="font-serif text-2xl text-heading text-[rgba(255,230,220,1)] drop-shadow-[0_0_10px_rgba(220,80,60,0.4)]">{result.disease}</h3>
                           <p className="text-xs font-light tracking-wide text-[rgba(255,160,140,0.8)] uppercase mt-1">{t('diseaseDetection.highRiskDetected')}</p>
                         </div>
-                      </div>
+                      </>
+                    )}
+                  </div>
                 ) : null}
               </div>
             </div>
@@ -204,8 +218,8 @@ const DiseaseDetection = () => {
               </div>
             </div>
           ) : (
-            <div className="flex-1 glass-card p-8 flex flex-col border border-[rgba(180,210,140,0.25)] relative overflow-hidden animate-in fade-in slide-in-from-right-8">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[rgba(220,80,60,0.1)] blur-3xl rounded-full"></div>
+            <div className={`flex-1 glass-card p-8 flex flex-col relative overflow-hidden animate-in fade-in slide-in-from-right-8 border ${result.is_healthy ? 'border-[rgba(140,180,120,0.3)]' : 'border-[rgba(180,210,140,0.25)]'}`}>
+              <div className={`absolute top-0 right-0 w-32 h-32 blur-3xl rounded-full ${result.is_healthy ? 'bg-[rgba(140,180,120,0.1)]' : 'bg-[rgba(220,80,60,0.1)]'}`}></div>
               
               {result.uncertain && (
                 <div className="mb-4 p-4 rounded-lg bg-[rgba(255,180,0,0.1)] border border-[rgba(255,180,0,0.3)] flex items-start gap-3">

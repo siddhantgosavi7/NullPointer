@@ -36,14 +36,14 @@ const YieldPrediction = () => {
 
     const payload = {
       crop_type: formData.cropType,
-      area: Number(formData.area),
+      area: formData.area ? Number(formData.area) : 1.0,
       soil_parameters: {
-        moisture: Number(formData.soilMoisture),
-        ph: Number(formData.soilPH),
+        moisture: formData.soilMoisture ? Number(formData.soilMoisture) : 35.0,
+        ph: formData.soilPH ? Number(formData.soilPH) : 6.5,
       },
       weather_data: {
-        rainfall: Number(formData.rainfall),
-        temperature: Number(formData.temperature),
+        rainfall: formData.rainfall ? Number(formData.rainfall) : 60.0,
+        temperature: formData.temperature ? Number(formData.temperature) : 26.0,
       },
       historical_data: parseHistorical(),
     };

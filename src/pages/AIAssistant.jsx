@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Send, Mic, Sparkles, Sprout, CloudRain, Droplets, TrendingUp, AlertTriangle, FileText, ImagePlus, X, Volume2, Square } from 'lucide-react';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { useOutletContext } from 'react-router-dom';
 
 const AIAssistant = () => {
