@@ -379,5 +379,115 @@
     "confidence": "Vertrauen",
     "forecast": "Prognose",
     "yieldEstimate": "Ertragsschätzung"
+  },
+  "landing": {
+    "hero": {
+      "tag": "Verwurzelt im Morgen",
+      "title": "KrishiMitra<br><em>AI</em> Plattform",
+      "sub": "Wo Landwirtschaft auf fortschrittliche Intelligenz trifft. Eine umfassende Plattform für datengesteuerte, nachhaltige Landwirtschaft.",
+      "explore": "Erkunden"
+    },
+    "manifesto": {
+      "label": "Unsere Philosophie",
+      "text": "Wir glauben, dass die Zukunft der Landwirtschaft in der Synergie zwischen traditionellem Wissen und künstlicher Intelligenz liegt. Landwirte mit handlungsrelevanten Erkenntnissen ausstatten."
+    },
+    "pillars": {
+      "title": "Drei Säulen",
+      "p1_num": "01",
+      "p1_title": "Analysieren",
+      "p1_desc": "Echtzeit-Überwachung der Pflanzen- und Bodengesundheit mithilfe von Computer Vision und Satellitenbildern.",
+      "p2_num": "02",
+      "p2_title": "Vorhersagen",
+      "p2_desc": "Fortschrittliche Wettervorhersagen und Ertragsprognosemodelle, damit Sie immer einen Schritt voraus sind.",
+      "p3_num": "03",
+      "p3_title": "Optimieren",
+      "p3_desc": "Intelligente Bewässerung und Präzisionslandwirtschaft zur Maximierung der Ressourceneffizienz und Senkung der Kosten."
+    },
+    "stats": {
+      "label": "Unsere bisherigen Erfolge",
+      "trees_num": "2,4 Mio.",
+      "trees_unit": "Gepflanzte Bäume",
+      "carbon_num": "98%",
+      "carbon_unit": "CO2-Kompensation",
+      "communities_num": "140+",
+      "communities_unit": "Gemeinschaften",
+      "waste_num": "Null",
+      "waste_unit": "Abfall auf Deponien"
+    },
+    "quote": {
+      "text": "\"Die Erde gehört nicht uns. Wir gehören der Erde — und unser Code sollte diese Wahrheit widerspiegeln.\"",
+      "attr": "— Lena Ashford, Gründerin"
+    },
+    "cta": {
+      "title": "Stärken Sie Ihre<br><em>Ernte</em>",
+      "sub": "Treten Sie einer wachsenden Gemeinschaft von Landwirten, Agronomen und Technologen bei, die eine ernährungssichere Zukunft gestalten.",
+      "login": "Einloggen →"
+    },
+    "footer": {
+      "brand_desc": "Wo Landwirtschaft auf fortschrittliche Intelligenz trifft. Eine umfassende Plattform für datengesteuerte, nachhaltige Landwirtschaft.",
+      "col_explore": "Erkunden",
+      "col_resources": "Ressourcen",
+      "col_connect": "Verbinden",
+      "links": {
+        "mission": "Mission",
+        "pillars": "Säulen",
+        "impact": "Ergebnisse",
+        "community": "Gemeinschaft",
+        "documentation": "Dokumentation",
+        "open_source": "Open Source",
+        "research": "Forschung",
+        "blog": "Blog"
+      }
+    },
+    "nav": {
+      "mission": "Mission",
+      "pillars": "Säulen",
+      "impact": "Ergebnisse",
+      "login": "Einloggen"
+    }
+  },
+  "auth": {
+    "tag": "Verwurzelt im Morgen",
+    "login": {
+      "heading": "Willkommen <em>zurück</em>",
+      "sub": "Melden Sie sich bei Ihrem KrishiMitra-Konto an",
+      "footer": "Neu hier? Erstellen Sie ein Konto."
+    },
+    "register": {
+      "heading": "KrishiMitra <em>beitreten</em>",
+      "sub": "Erstellen Sie Ihr KrishiMitra-Konto",
+      "footer": "Haben Sie bereits ein Konto? Oben anmelden."
+    },
+    "tabs": {
+      "signin": "Anmelden",
+      "register": "Registrieren"
+    },
+    "labels": {
+      "name": "Vollständiger Name",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "confirmPassword": "Passwort bestätigen"
+    },
+    "placeholders": {
+      "name": "Ihr Name",
+      "email": "you@sanctuary.com",
+      "password": "Mind. 8 Zeichen",
+      "confirmPassword": "Passwort wiederholen"
+    },
+    "forgot": "Passwort vergessen?",
+    "errors": {
+      "fillFields": "Bitte füllen Sie alle Felder aus.",
+      "fillBothFields": "Bitte füllen Sie beide Felder aus.",
+      "invalidEmail": "Geben Sie eine gültige E-Mail-Adresse ein.",
+      "passwordLength": "Das Passwort muss mindestens 6 Zeichen lang sein.",
+      "passwordsMismatch": "Die Passwörter stimmen nicht überein.",
+      "forgotEmailFirst": "Geben Sie zuerst Ihre E-Mail-Adresse oben ein und klicken Sie dann auf Passwort vergessen."
+    },
+    "success": {
+      "resetSent": "Zurücksetzungslink an {{email}} gesendet — überprüfen Sie Ihren Posteingang.",
+      "registerSuccess": "Willkommen, {{name}}! Ihr Konto ist bereit."
+    },
+    "footer": "Geschützt durch KrishiMitra Core Intelligence"
   }
 }
+

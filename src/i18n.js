@@ -1,9 +1,12 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import en from './locales/en.json';
+import hi from './locales/hi.json';
+import mr from './locales/mr.json';
+import de from './locales/de.json';
 
 const supportedLngs = ['en', 'hi', 'mr', 'de'];
 const languageStorageKey = 'krishi_mitra_language';
-const localeFiles = import.meta.glob('./locales/*.json');
 const namespace = 'translation';
 
 const getPersistedLanguage = () => {
@@ -21,24 +24,6 @@ const detectBrowserLanguage = () => {
 
 const getInitialLanguage = () => {
   return getPersistedLanguage() || detectBrowserLanguage();
-};
-
-const getLocaleLoader = (lng) => {
-  const normalized = lng.split('-')[0];
-  return localeFiles[`./locales/${normalized}.json`];
-};
-
-const loadLocale = async (lng) => {
-  const normalized = lng.split('-')[0];
-  if (!supportedLngs.includes(normalized)) return;
-  if (i18n.hasResourceBundle(normalized, namespace)) return;
-
-  const loader = getLocaleLoader(normalized);
-  if (!loader) return;
-
-  const resource = await loader();
-  const translations = resource.default || resource;
-  i18n.addResourceBundle(normalized, namespace, translations, true, true);
 };
 
 const setHtmlLang = (lng) => {
@@ -66,32 +51,26 @@ i18n
     },
     resources: {
       en: {
-        translation: {},
+        translation: en,
       },
       hi: {
-        translation: {},
+        translation: hi,
       },
       mr: {
-        translation: {},
+        translation: mr,
       },
       de: {
-        translation: {},
+        translation: de,
       },
     },
   });
 
-loadLocale(initialLanguage)
-  .then(() => i18n.changeLanguage(initialLanguage))
-  .catch((err) => {
-    console.error('Failed to load translation files:', err);
-  });
-
 setHtmlLang(initialLanguage);
 
-i18n.on('languageChanged', async (lng) => {
+i18n.on('languageChanged', (lng) => {
   localStorage.setItem(languageStorageKey, lng);
-  await loadLocale(lng);
   setHtmlLang(lng);
 });
 
 export default i18n;
+

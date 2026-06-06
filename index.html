@@ -946,12 +946,21 @@
 	<div class="progress-bar" id="progressBar"></div>
 
 	<nav class="nav-float" id="navFloat">
-		<div class="nav-logo">KrishiMitra</div>
+		<div class="nav-logo" data-i18n="navigation.brand">KrishiMitra</div>
 		<div class="nav-links">
-			<a href="javascript:void(0)" data-nav="1">Mission</a>
-			<a href="javascript:void(0)" data-nav="2">Pillars</a>
-			<a href="javascript:void(0)" data-nav="3">Impact</a>
-			<a href="login.html">Log In</a>
+			<a href="javascript:void(0)" data-nav="1" data-i18n="landing.nav.mission">Mission</a>
+			<a href="javascript:void(0)" data-nav="2" data-i18n="landing.nav.pillars">Pillars</a>
+			<a href="javascript:void(0)" data-nav="3" data-i18n="landing.nav.impact">Impact</a>
+			<a href="login.html" data-i18n="landing.nav.login">Log In</a>
+
+      <div class="lang-select-wrapper" style="margin-left: 10px; display: inline-flex; align-items: center; pointer-events: auto;">
+        <select class="language-select" style="background: rgba(10, 15, 10, 0.6); color: #fff; border: 1px solid rgba(140, 180, 120, 0.15); border-radius: 6px; padding: 4px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; outline: none; cursor: pointer;">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="mr">मराठी</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
 
       <div class="app-dropdown-wrapper" id="appDropdownWrapperDesktop" style="margin-left: 20px; vertical-align: middle;">
         <button class="app-menu-btn" id="appMenuBtnDesktop">
@@ -978,10 +987,20 @@
 	</nav>
 
 	<div class="nav-mobile-overlay" id="navMobileOverlay">
-		<a href="javascript:void(0)" data-nav-mobile="1">Mission</a>
-		<a href="javascript:void(0)" data-nav-mobile="2">Pillars</a>
-		<a href="javascript:void(0)" data-nav-mobile="3">Impact</a>
-		<a href="login.html">Log In</a>
+		<a href="javascript:void(0)" data-nav-mobile="1" data-i18n="landing.nav.mission">Mission</a>
+		<a href="javascript:void(0)" data-nav-mobile="2" data-i18n="landing.nav.pillars">Pillars</a>
+		<a href="javascript:void(0)" data-nav-mobile="3" data-i18n="landing.nav.impact">Impact</a>
+		<a href="login.html" data-i18n="landing.nav.login">Log In</a>
+
+    <div class="lang-select-wrapper" style="margin-top: 10px; display: inline-flex; align-items: center; pointer-events: auto;">
+      <select class="language-select" style="background: rgba(10, 15, 10, 0.85); color: #fff; border: 1px solid rgba(140, 180, 120, 0.15); border-radius: 6px; padding: 8px 16px; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; outline: none; cursor: pointer;">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </div>
+
 
       <div class="app-dropdown-wrapper" id="appDropdownWrapperMobile" style="margin-top: 20px;">
         <button class="app-menu-btn" id="appMenuBtnMobile" style="margin: 0 auto;">
@@ -1011,75 +1030,76 @@
 
 	<div id="scroll-container">
 		<section class="section hero" id="heroSection" data-stage="0">
-			<span class="hero-tag" data-reveal data-delay="1">Rooted in Tomorrow</span>
-			<h1 data-reveal data-delay="2">KrishiMitra<br><em>AI</em> Platform</h1>
-			<p class="hero-sub" data-reveal data-delay="3">Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.</p>
+			<span class="hero-tag" data-reveal data-delay="1" data-i18n="landing.hero.tag">Rooted in Tomorrow</span>
+			<h1 data-reveal data-delay="2" data-i18n="landing.hero.title">KrishiMitra<br><em>AI</em> Platform</h1>
+			<p class="hero-sub" data-reveal data-delay="3" data-i18n="landing.hero.sub">Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.</p>
 
 			<div class="scroll-hint" data-reveal data-delay="4">
-				<span>Explore</span>
+				<span data-i18n="landing.hero.explore">Explore</span>
 				<div class="scroll-line"></div>
 			</div>
 		</section>
 
 		<section class="section manifesto" data-stage="1">
-			<span class="manifesto-label" data-reveal>Our Philosophy</span>
-			<h2 data-reveal data-delay="1">We believe the future of farming lies in the synergy between traditional wisdom and artificial intelligence. Empowering farmers with actionable insights.</h2>
+			<span class="manifesto-label" data-reveal data-i18n="landing.manifesto.label">Our Philosophy</span>
+			<h2 data-reveal data-delay="1" data-i18n="landing.manifesto.text">We believe the future of farming lies in the synergy between traditional wisdom and artificial intelligence. Empowering farmers with actionable insights.</h2>
 		</section>
 
 		<section class="section pillars" data-stage="2">
 			<div class="pillars-header" data-reveal>
-				<span>Three Pillars</span>
+				<span data-i18n="landing.pillars.title">Three Pillars</span>
 			</div>
 			<div class="pillar-grid">
 				<div class="pillar-card" data-reveal data-delay="1">
-					<div class="pillar-num">01</div>
-					<h3>Analyze</h3>
-					<p>Real-time crop and soil health monitoring using computer vision and satellite imagery.</p>
+					<div class="pillar-num" data-i18n="landing.pillars.p1_num">01</div>
+					<h3 data-i18n="landing.pillars.p1_title">Analyze</h3>
+					<p data-i18n="landing.pillars.p1_desc">Real-time crop and soil health monitoring using computer vision and satellite imagery.</p>
 				</div>
 				<div class="pillar-card" data-reveal data-delay="2">
-					<div class="pillar-num">02</div>
-					<h3>Predict</h3>
-					<p>Advanced weather forecasting and yield prediction models to help you stay ahead of the curve.</p>
+					<div class="pillar-num" data-i18n="landing.pillars.p2_num">02</div>
+					<h3 data-i18n="landing.pillars.p2_title">Predict</h3>
+					<p data-i18n="landing.pillars.p2_desc">Advanced weather forecasting and yield prediction models to help you stay ahead of the curve.</p>
 				</div>
 				<div class="pillar-card" data-reveal data-delay="3">
-					<div class="pillar-num">03</div>
-					<h3>Optimize</h3>
-					<p>Smart irrigation and precision agriculture to maximize resource efficiency and reduce costs.</p>
+					<div class="pillar-num" data-i18n="landing.pillars.p3_num">03</div>
+					<h3 data-i18n="landing.pillars.p3_title">Optimize</h3>
+					<p data-i18n="landing.pillars.p3_desc">Smart irrigation and precision agriculture to maximize resource efficiency and reduce costs.</p>
 				</div>
 			</div>
 		</section>
 
 		<section class="section stats-section" data-stage="3">
-			<span class="stats-label" data-reveal>Our Impact So Far</span>
+			<span class="stats-label" data-reveal data-i18n="landing.stats.label">Our Impact So Far</span>
 			<div class="stats-grid">
 				<div class="stat-item" data-reveal data-delay="1">
-					<div class="stat-num">2.4M</div>
-					<div class="stat-unit">Trees Planted</div>
+					<div class="stat-num" data-i18n="landing.stats.trees_num">2.4M</div>
+					<div class="stat-unit" data-i18n="landing.stats.trees_unit">Trees Planted</div>
 				</div>
 				<div class="stat-item" data-reveal data-delay="2">
-					<div class="stat-num">98%</div>
-					<div class="stat-unit">Carbon Offset</div>
+					<div class="stat-num" data-i18n="landing.stats.carbon_num">98%</div>
+					<div class="stat-unit" data-i18n="landing.stats.carbon_unit">Carbon Offset</div>
 				</div>
 				<div class="stat-item" data-reveal data-delay="3">
-					<div class="stat-num">140+</div>
-					<div class="stat-unit">Communities</div>
+					<div class="stat-num" data-i18n="landing.stats.communities_num">140+</div>
+					<div class="stat-unit" data-i18n="landing.stats.communities_unit">Communities</div>
 				</div>
 				<div class="stat-item" data-reveal data-delay="4">
-					<div class="stat-num">Zero</div>
-					<div class="stat-unit">Waste to Landfill</div>
+					<div class="stat-num" data-i18n="landing.stats.waste_num">Zero</div>
+					<div class="stat-unit" data-i18n="landing.stats.waste_unit">Waste to Landfill</div>
 				</div>
 			</div>
 		</section>
 
 		<section class="section quote-section" data-stage="4">
-			<blockquote data-reveal>"The earth does not belong to us. We belong to the earth — and our code should reflect that truth."</blockquote>
-			<span class="quote-attr" data-reveal data-delay="1">— Lena Ashford, Founder</span>
+			<blockquote data-reveal data-i18n="landing.quote.text">"The earth does not belong to us. We belong to the earth — and our code should reflect that truth."</blockquote>
+			<span class="quote-attr" data-reveal data-delay="1" data-i18n="landing.quote.attr">— Lena Ashford, Founder</span>
 		</section>
 
+
 		<section class="section cta-section" data-stage="5">
-			<h2 data-reveal>Empower Your<br><em>Harvest</em></h2>
-			<p class="cta-sub" data-reveal data-delay="1">Join a growing collective of farmers, agronomists, and technologists crafting a food-secure future.</p>
-			<a href="login.html" class="cta-btn" data-reveal data-delay="2">Log In →</a>
+			<h2 data-reveal data-i18n="landing.cta.title">Empower Your<br><em>Harvest</em></h2>
+			<p class="cta-sub" data-reveal data-delay="1" data-i18n="landing.cta.sub">Join a growing collective of farmers, agronomists, and technologists crafting a food-secure future.</p>
+			<a href="login.html" class="cta-btn" data-reveal data-delay="2" data-i18n="landing.cta.login">Log In →</a>
 		</section>
 
 		<section class="section footer" data-stage="6">
@@ -1089,25 +1109,25 @@
 	<footer class="site-footer">
 		<div class="site-footer-inner">
 			<div class="sf-brand">
-				<div class="sf-brand-name">KrishiMitra</div>
-				<p class="sf-brand-desc">Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.</p>
+				<div class="sf-brand-name" data-i18n="navigation.brand">KrishiMitra</div>
+				<p class="sf-brand-desc" data-i18n="landing.footer.brand_desc">Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.</p>
 			</div>
 			<div class="sf-col">
-				<div class="sf-col-title">Explore</div>
-				<a href="javascript:void(0)">Mission</a>
-				<a href="javascript:void(0)">Pillars</a>
-				<a href="javascript:void(0)">Impact</a>
-				<a href="javascript:void(0)">Community</a>
+				<div class="sf-col-title" data-i18n="landing.footer.col_explore">Explore</div>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.mission">Mission</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.pillars">Pillars</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.impact">Impact</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.community">Community</a>
 			</div>
 			<div class="sf-col">
-				<div class="sf-col-title">Resources</div>
-				<a href="javascript:void(0)">Documentation</a>
-				<a href="javascript:void(0)">Open Source</a>
-				<a href="javascript:void(0)">Research</a>
-				<a href="javascript:void(0)">Blog</a>
+				<div class="sf-col-title" data-i18n="landing.footer.col_resources">Resources</div>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.documentation">Documentation</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.open_source">Open Source</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.research">Research</a>
+				<a href="javascript:void(0)" data-i18n="landing.footer.links.blog">Blog</a>
 			</div>
 			<div class="sf-col">
-				<div class="sf-col-title">Connect</div>
+				<div class="sf-col-title" data-i18n="landing.footer.col_connect">Connect</div>
 				<a href="javascript:void(0)">Contact</a>
 				<a href="javascript:void(0)">Newsletter</a>
 				<a href="javascript:void(0)">Partnerships</a>
@@ -1125,7 +1145,9 @@
 	</footer>
 
 	<div id="root" style="position:relative; z-index:60;"></div>
+	<script type="module" src="/src/landing-i18n.js"></script>
 	<script type="module" src="/src/main.jsx"></script>
+
 
 	<script type="module">
 		import * as THREE from 'three/webgpu';

@@ -143,31 +143,48 @@ const Navigation = ({ scrolled: propScrolled }) => {
       {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 overflow-y-auto py-10">
-          <Link to="/dashboard" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Dashboard</Link>
-          <Link to="/assistant" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">AI Assistant</Link>
-          <Link to="/disease" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Disease Detection</Link>
-          <Link to="/crop" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Crop Recommendation</Link>
-          <Link to="/crop-analysis" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Crop Analysis</Link>
-          <Link to="/yield" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Yield Forecast</Link>
-          <Link to="/weather" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Weather Intelligence</Link>
-          <Link to="/irrigation" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Irrigation Advisor</Link>
-          <Link to="/market" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Market Intelligence</Link>
-          <Link to="/schemes" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Government Schemes</Link>
-          <Link to="/profile" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Farmer Profile</Link>
-          <Link to="/alerts" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Alerts Center</Link>
-          <Link to="/analytics" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">Analytics</Link>
+          <Link to="/dashboard" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.dashboard')}</Link>
+          <Link to="/assistant" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.assistant')}</Link>
+          <Link to="/disease" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.diseaseDetection')}</Link>
+          <Link to="/crop" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.cropRecommendation')}</Link>
+          <Link to="/crop-analysis" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.cropAnalysis')}</Link>
+          <Link to="/yield" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.yieldForecast')}</Link>
+          <Link to="/weather" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.weather')}</Link>
+          <Link to="/irrigation" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.irrigation')}</Link>
+          <Link to="/market" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.market')}</Link>
+          <Link to="/schemes" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.schemes')}</Link>
+          <Link to="/profile" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.profile')}</Link>
+          <Link to="/alerts" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.alerts')}</Link>
+          <Link to="/analytics" onClick={() => setIsOpen(false)} className="text-[13px] tracking-[3px] uppercase text-[rgba(215,230,190,0.7)] hover:text-accent transition-colors">{t('navigation.analytics')}</Link>
           
           <div className="w-12 h-px bg-[rgba(140,180,120,0.2)] my-2"></div>
           
           {currentUser ? (
             <button onClick={handleLogout} className="px-6 py-2.5 text-[11px] tracking-[2px] uppercase text-red-400 border border-[rgba(248,113,113,0.25)] rounded-full hover:bg-[rgba(248,113,113,0.1)] transition-all">
-              Logout
+              {t('navigation.logout')}
             </button>
           ) : (
             <a href="/login.html" className="px-6 py-2.5 text-[11px] tracking-[2px] uppercase text-accent border border-[rgba(180,210,140,0.25)] rounded-full hover:bg-[rgba(40,65,40,0.5)] transition-all">
-              Login
+              {t('navigation.login')}
             </a>
           )}
+
+          <div className="w-12 h-px bg-[rgba(140,180,120,0.2)] my-2"></div>
+
+          <div className="relative inline-flex items-center gap-2 pointer-events-auto">
+            <label htmlFor="language-select-mobile" className="text-[10px] uppercase tracking-[2px] text-[rgba(215,230,190,0.55)]">{t('navigation.languageLabel')}</label>
+            <select
+              id="language-select-mobile"
+              value={language}
+              onChange={(e) => i18n.changeLanguage(e.target.value)}
+              className="glass-input bg-[rgba(10,15,10,0.6)] text-[10px] text-white uppercase tracking-[1.5px] border border-[rgba(140,180,120,0.15)] rounded-md px-2 py-1"
+            >
+              <option value="en">{t('navigation.languages.en')}</option>
+              <option value="hi">{t('navigation.languages.hi')}</option>
+              <option value="mr">{t('navigation.languages.mr')}</option>
+              <option value="de">{t('navigation.languages.de')}</option>
+            </select>
+          </div>
         </div>
       )}
     </>

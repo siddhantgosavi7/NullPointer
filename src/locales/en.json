@@ -381,5 +381,115 @@
     "confidence": "Confidence",
     "forecast": "Forecast",
     "yieldEstimate": "Yield estimate"
+  },
+  "landing": {
+    "hero": {
+      "tag": "Rooted in Tomorrow",
+      "title": "KrishiMitra<br><em>AI</em> Platform",
+      "sub": "Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.",
+      "explore": "Explore"
+    },
+    "manifesto": {
+      "label": "Our Philosophy",
+      "text": "We believe the future of farming lies in the synergy between traditional wisdom and artificial intelligence. Empowering farmers with actionable insights."
+    },
+    "pillars": {
+      "title": "Three Pillars",
+      "p1_num": "01",
+      "p1_title": "Analyze",
+      "p1_desc": "Real-time crop and soil health monitoring using computer vision and satellite imagery.",
+      "p2_num": "02",
+      "p2_title": "Predict",
+      "p2_desc": "Advanced weather forecasting and yield prediction models to help you stay ahead of the curve.",
+      "p3_num": "03",
+      "p3_title": "Optimize",
+      "p3_desc": "Smart irrigation and precision agriculture to maximize resource efficiency and reduce costs."
+    },
+    "stats": {
+      "label": "Our Impact So Far",
+      "trees_num": "2.4M",
+      "trees_unit": "Trees Planted",
+      "carbon_num": "98%",
+      "carbon_unit": "Carbon Offset",
+      "communities_num": "140+",
+      "communities_unit": "Communities",
+      "waste_num": "Zero",
+      "waste_unit": "Waste to Landfill"
+    },
+    "quote": {
+      "text": "\"The earth does not belong to us. We belong to the earth — and our code should reflect that truth.\"",
+      "attr": "— Lena Ashford, Founder"
+    },
+    "cta": {
+      "title": "Empower Your<br><em>Harvest</em>",
+      "sub": "Join a growing collective of farmers, agronomists, and technologists crafting a food-secure future.",
+      "login": "Log In →"
+    },
+    "footer": {
+      "brand_desc": "Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.",
+      "col_explore": "Explore",
+      "col_resources": "Resources",
+      "col_connect": "Connect",
+      "links": {
+        "mission": "Mission",
+        "pillars": "Pillars",
+        "impact": "Impact",
+        "community": "Community",
+        "documentation": "Documentation",
+        "open_source": "Open Source",
+        "research": "Research",
+        "blog": "Blog"
+      }
+    },
+    "nav": {
+      "mission": "Mission",
+      "pillars": "Pillars",
+      "impact": "Impact",
+      "login": "Log In"
+    }
+  },
+  "auth": {
+    "tag": "Rooted in Tomorrow",
+    "login": {
+      "heading": "Welcome <em>Back</em>",
+      "sub": "Sign in to your KrishiMitra account",
+      "footer": "New here? Create your account."
+    },
+    "register": {
+      "heading": "Join <em>KrishiMitra</em>",
+      "sub": "Create your KrishiMitra account",
+      "footer": "Already have an account? Sign in above."
+    },
+    "tabs": {
+      "signin": "Sign In",
+      "register": "Register"
+    },
+    "labels": {
+      "name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "placeholders": {
+      "name": "Your name",
+      "email": "you@sanctuary.com",
+      "password": "Min. 8 characters",
+      "confirmPassword": "Repeat password"
+    },
+    "forgot": "Forgot password?",
+    "errors": {
+      "fillFields": "Please fill in all fields.",
+      "fillBothFields": "Please fill in both fields.",
+      "invalidEmail": "Enter a valid email address.",
+      "passwordLength": "Password must be at least 6 characters.",
+      "passwordsMismatch": "Passwords do not match.",
+      "forgotEmailFirst": "Enter your email above first, then click Forgot password."
+    },
+    "success": {
+      "resetSent": "Reset link sent to {{email}} — check your inbox.",
+      "registerSuccess": "Welcome, {{name}}! Your account is ready."
+    },
+    "footer": "Protected by KrishiMitra Core Intelligence"
   }
 }
+
