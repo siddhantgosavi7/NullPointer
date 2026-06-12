@@ -45,16 +45,16 @@ Render is an excellent platform for deploying the Python FastAPI server as a web
    - **Language:** Select **Python 3** (or **Docker** if using containers).
    - **Region:** Choose the region closest to your users.
    - **Branch:** E.g., `main`.
-   - **Root Directory:** Keep it empty (default, pointing to the project root), or set it to `backend` if you want to deploy only the backend folder. We recommend keeping it empty and defining commands relative to the root:
-     - **Build Command:** `pip install -r backend/requirements.txt`
-     - **Start Command:** `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
+   - **Root Directory:** `backend`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
 3. **Configure Environment Variables:**
    - Click the **Environment** tab and add the following variables:
      - `PYTHON_VERSION`: `3.11.9` (Tells Render to build using a TensorFlow-supported Python version).
      - `MODEL_DIR`: `ai/models` (Points the backend to the unified AI models directory).
      - `LOG_LEVEL`: `INFO`
      - `MAX_IMAGE_SIZE_MB`: `8` (Protects your Render worker memory by limiting upload payload size).
-     - `PYTHONPATH`: `.`
+     - `PYTHONPATH`: `..` (Crucial! Adds the parent directory to Python's search path so that package imports starting with 'backend.' resolve correctly when running from the 'backend' folder).
 4. **Advanced Settings (Render Free Tier Warning):**
    - Since the backend loads a TensorFlow model (`~31MB`), startup can take about 10–30 seconds. On Render's Free tier, the service may sleep after 15 minutes of inactivity. The first request after it sleeps will trigger a cold start and may take ~1 minute to spin up and load the model.
 5. **Deploy:**
