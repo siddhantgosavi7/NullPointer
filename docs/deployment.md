@@ -50,6 +50,7 @@ Render is an excellent platform for deploying the Python FastAPI server as a web
      - **Start Command:** `uvicorn backend.main:app --host 0.0.0.0 --port $PORT`
 3. **Configure Environment Variables:**
    - Click the **Environment** tab and add the following variables:
+     - `PYTHON_VERSION`: `3.11.9` (Tells Render to build using a TensorFlow-supported Python version).
      - `MODEL_DIR`: `ai/models` (Points the backend to the unified AI models directory).
      - `LOG_LEVEL`: `INFO`
      - `MAX_IMAGE_SIZE_MB`: `8` (Protects your Render worker memory by limiting upload payload size).

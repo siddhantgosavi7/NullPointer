@@ -21,7 +21,7 @@ r = requests.post(f"{BASE_URL}/api/yield/predict", json=payload)
 print("Status Code:", r.status_code)
 print("Response:", r.json())
 
-img_path = os.path.abspath("Rules and Regulations/AGTECHATHON2.0.jpeg")
+img_path = os.path.abspath("frontend/src/assets/hero.png")
 if os.path.exists(img_path):
     print("\n--- Testing Crop Analysis ---")
     with open(img_path, "rb") as f:
