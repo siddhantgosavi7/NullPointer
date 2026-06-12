@@ -23,7 +23,7 @@ function convertToReact(htmlStr) {
 }
 
 const backupDir = path.join(__dirname, '..', '_backup');
-const pagesDir = path.join(__dirname, 'src', 'pages');
+const pagesDir = path.join(__dirname, '..', 'frontend', 'src', 'pages');
 
 try {
   const indexHtml = fs.readFileSync(path.join(backupDir, 'index.html'), 'utf8');

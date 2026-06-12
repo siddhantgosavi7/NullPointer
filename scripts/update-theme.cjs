@@ -1,5 +1,6 @@
 const fs = require('fs');
-let content = fs.readFileSync('index.html', 'utf8');
+const path = require('path');
+let content = fs.readFileSync(path.join(__dirname, '..', 'frontend', 'index.html'), 'utf8');
 
 // Title and Nav Logo
 content = content.replace('<title>Verdana — Digital Oasis</title>', '<title>KrishiMitra AI — Agritech Platform</title>');
@@ -27,5 +28,5 @@ content = content.replace('<h2 data-reveal>Step into<br>the <em>Oasis</em></h2>'
 content = content.replace('Join a growing collective of builders, dreamers, and stewards crafting a world worth inheriting.', 'Join a growing collective of farmers, agronomists, and technologists crafting a food-secure future.');
 content = content.replace('A sanctuary for sustainable minds building a regenerative future where technology meets the earth.', 'Where agriculture meets advanced intelligence. A comprehensive platform for data-driven, sustainable farming.');
 
-fs.writeFileSync('index.html', content);
+fs.writeFileSync(path.join(__dirname, '..', 'frontend', 'index.html'), content);
 console.log('Text content updated successfully');

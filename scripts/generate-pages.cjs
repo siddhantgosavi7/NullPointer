@@ -26,7 +26,7 @@ const ${name} = () => {
 export default ${name};
 `;
 
-const pagesDir = path.join(__dirname, 'src', 'pages');
+const pagesDir = path.join(__dirname, '..', 'frontend', 'src', 'pages');
 if (!fs.existsSync(pagesDir)) {
   fs.mkdirSync(pagesDir, { recursive: true });
 }

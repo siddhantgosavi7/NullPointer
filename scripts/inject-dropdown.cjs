@@ -1,5 +1,6 @@
 const fs = require('fs');
-let content = fs.readFileSync('index.html', 'utf8');
+const path = require('path');
+let content = fs.readFileSync(path.join(__dirname, '..', 'frontend', 'index.html'), 'utf8');
 
 const dropdownCss = `
   <style>
@@ -149,5 +150,5 @@ const dropdownJs = `
 
 content = content.replace('// ─── Mobile Hamburger Menu ─────────────────────────────────────────', dropdownJs);
 
-fs.writeFileSync('index.html', content);
+fs.writeFileSync(path.join(__dirname, '..', 'frontend', 'index.html'), content);
 console.log('Dropdown injected successfully');

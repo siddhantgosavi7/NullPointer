@@ -2,8 +2,8 @@
 from pathlib import Path
 import json
 
-ROOT = Path(__file__).resolve().parents[4]
-AI_MODEL_DIR = ROOT / 'AI_Model'
+ROOT = Path(__file__).resolve().parents[3]
+AI_MODEL_DIR = ROOT / 'ai' / 'models'
 
 MODEL_FILE = AI_MODEL_DIR / 'crop_analysis_model.h5'
 

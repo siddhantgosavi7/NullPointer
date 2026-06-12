@@ -1,8 +1,8 @@
 """Yield prediction model wrapper that uses local AI_Model if present."""
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[4]
-AI_MODEL_DIR = ROOT / 'AI_Model'
+ROOT = Path(__file__).resolve().parents[3]
+AI_MODEL_DIR = ROOT / 'ai' / 'models'
 
 MODEL_FILE = AI_MODEL_DIR / 'yield_prediction_model.h5'
 
