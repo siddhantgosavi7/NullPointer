@@ -1,13 +1,20 @@
-"""Direct TensorFlow model loader for wheat leaf disease detection."""
+import os
 import json
 from io import BytesIO
 from pathlib import Path
 from PIL import Image
 import numpy as np
 
-# Resolve project root
+# Resolve project root and model directory
 ROOT = Path(__file__).resolve().parents[3]
-AI_MODEL_DIR = ROOT / 'ai' / 'models'
+MODEL_DIR_ENV = os.getenv("MODEL_DIR")
+
+if MODEL_DIR_ENV:
+    AI_MODEL_DIR = Path(MODEL_DIR_ENV)
+    if not AI_MODEL_DIR.is_absolute():
+        AI_MODEL_DIR = ROOT / AI_MODEL_DIR
+else:
+    AI_MODEL_DIR = ROOT / 'ai' / 'models'
 
 MODEL_PATH = AI_MODEL_DIR / 'wheat_model.h5'
 CLASSES_PATH = AI_MODEL_DIR / 'classes.json'

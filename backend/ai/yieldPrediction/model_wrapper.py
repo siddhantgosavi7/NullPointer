@@ -1,8 +1,17 @@
 """Yield prediction model wrapper that uses local AI_Model if present."""
+import os
 from pathlib import Path
 
+# Resolve project root and model directory
 ROOT = Path(__file__).resolve().parents[3]
-AI_MODEL_DIR = ROOT / 'ai' / 'models'
+MODEL_DIR_ENV = os.getenv("MODEL_DIR")
+
+if MODEL_DIR_ENV:
+    AI_MODEL_DIR = Path(MODEL_DIR_ENV)
+    if not AI_MODEL_DIR.is_absolute():
+        AI_MODEL_DIR = ROOT / AI_MODEL_DIR
+else:
+    AI_MODEL_DIR = ROOT / 'ai' / 'models'
 
 MODEL_FILE = AI_MODEL_DIR / 'yield_prediction_model.h5'
 
