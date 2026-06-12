@@ -1,0 +1,269 @@
+/* Styles specifically for the Login/Register page */
+.login-page-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Inter', sans-serif;
+  position: relative;
+  
+  --accent: rgba(230, 245, 120, 0.95);
+  --accent-glow: rgba(230, 245, 120, 0.18);
+  --heading: #f8fcf0;
+  --label: rgba(210, 230, 160, 0.65);
+  --body: rgba(215, 230, 190, 0.55);
+  --border: rgba(140, 180, 120, 0.18);
+  --border-hover: rgba(180, 210, 140, 0.5);
+  --card-bg: rgba(10, 18, 10, 0.58);
+  --input-bg: rgba(8, 16, 8, 0.5);
+}
+
+.login-page-container #canvas-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.login-page-container #canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.login-page-container #overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* ── Card ── */
+.login-page-container .auth-card {
+  pointer-events: all;
+  position: relative;
+  width: min(420px, calc(100vw - 32px));
+  background: var(--card-bg);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 44px 40px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.35s forwards;
+  box-shadow: 0 0 0 1px rgba(200,240,120,0.04) inset, 0 28px 70px rgba(0,0,0,0.55), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.login-page-container .auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,240,120,0.25) 30%, rgba(230,245,120,0.4) 50%, rgba(200,240,120,0.25) 70%, transparent);
+}
+
+@keyframes cardIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Tab switcher ── */
+.login-page-container .tab-row {
+  display: flex;
+  width: 100%;
+  background: rgba(8,15,8,0.5);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 30px;
+  gap: 4px;
+}
+
+.login-page-container .tab-btn {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--body);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.login-page-container .tab-btn.active {
+  background: rgba(20, 38, 16, 0.7);
+  color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(180,210,140,0.2) inset, 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* ── Heading ── */
+.login-page-container .card-label {
+  font-size: 10px; font-weight: 500; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--label); margin-bottom: 16px;
+}
+
+.login-page-container .card-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.5vw, 44px);
+  font-weight: 400; line-height: 1.05;
+  color: var(--heading); margin-bottom: 8px;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.5);
+}
+.login-page-container .card-heading em {
+  font-style: italic;
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(230,245,120,0.2);
+}
+
+.login-page-container .card-subtext {
+  font-size: 13px; font-weight: 300;
+  color: var(--body); margin-bottom: 28px; letter-spacing: 0.2px;
+}
+
+/* ── Input fields ── */
+.login-page-container .field {
+  width: 100%;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.login-page-container .field label {
+  display: block;
+  font-size: 10px; font-weight: 500; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--label);
+  margin-bottom: 7px;
+}
+
+.login-page-container .field input {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 16px;
+  color: var(--heading);
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  letter-spacing: 0.3px;
+}
+
+.login-page-container .field input::placeholder { color: rgba(180,210,150,0.25); }
+
+.login-page-container .field input:focus {
+  border-color: rgba(180, 210, 140, 0.45);
+  background: rgba(12, 22, 10, 0.65);
+  box-shadow: 0 0 0 3px rgba(180,210,140,0.07), 0 0 18px rgba(180,210,140,0.04);
+}
+
+/* toggle password eye */
+.login-page-container .eye-btn {
+  position: absolute; right: 12px; bottom: 12px;
+  background: none; border: none; cursor: pointer; padding: 2px;
+  color: rgba(180,210,140,0.3); transition: color 0.2s;
+  display: flex; align-items: center;
+}
+.login-page-container .eye-btn:hover { color: rgba(180,210,140,0.65); }
+
+/* ── Forgot link ── */
+.login-page-container .forgot-row {
+  width: 100%; display: flex; justify-content: flex-end;
+  margin-bottom: 22px; margin-top: -6px;
+}
+
+.login-page-container .forgot-link {
+  font-size: 11px; font-weight: 300;
+  color: rgba(210,230,160,0.4);
+  text-decoration: none; cursor: pointer;
+  transition: color 0.2s;
+}
+.login-page-container .forgot-link:hover { color: var(--accent); }
+
+/* ── Submit button ── */
+.login-page-container .btn-submit {
+  width: 100%;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  border-radius: 32px;
+  border: 1px solid rgba(180,210,140,0.28);
+  background: rgba(15,25,15,0.5);
+  backdrop-filter: blur(12px);
+  padding: 15px 24px;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), border-color 0.3s, background 0.3s, box-shadow 0.3s;
+  margin-bottom: 22px;
+  position: relative; overflow: hidden;
+  outline: none;
+}
+
+.login-page-container .btn-submit::after {
+  content: '';
+  position: absolute; inset: 0; border-radius: 32px;
+  background: radial-gradient(ellipse at center, rgba(230,245,120,0.07) 0%, transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+
+.login-page-container .btn-submit:hover {
+  transform: translateY(-2px);
+  border-color: rgba(180,210,140,0.55);
+  background: rgba(22,38,18,0.6);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3), 0 0 0 1px rgba(180,210,140,0.1) inset;
+}
+.login-page-container .btn-submit:hover::after { opacity: 1; }
+.login-page-container .btn-submit:active { transform: translateY(0); }
+
+.login-page-container .btn-submit .btn-text {
+  font-size: 11.5px; font-weight: 500; letter-spacing: 1.8px;
+  color: var(--accent); text-transform: uppercase; transition: opacity 0.2s;
+}
+
+.login-page-container .spinner {
+  display: none; width: 18px; height: 18px;
+  border: 1.5px solid rgba(230,245,120,0.2);
+  border-top-color: rgba(230,245,120,0.9);
+  border-radius: 50%; animation: spin 0.7s linear infinite; flex-shrink: 0;
+}
+.login-page-container .btn-submit.loading .spinner { display: block; }
+.login-page-container .btn-submit.loading .btn-text { opacity: 0.5; }
+.login-page-container .btn-submit.loading { pointer-events: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Divider ── */
+.login-page-container .divider {
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(140,180,120,0.12) 30%, rgba(140,180,120,0.12) 70%, transparent);
+  margin-bottom: 20px;
+}
+
+.login-page-container .card-footer {
+  font-size: 11px; font-weight: 300;
+  color: rgba(215,230,190,0.32); align-self: center; letter-spacing: 0.3px;
+}
+
+/* ── Panel visibility ── */
+.login-page-container .panel { display: none; width: 100%; flex-direction: column; }
+.login-page-container .panel.active { display: flex; }
+
+/* ── Error / success messages ── */
+.login-page-container .msg {
+  font-size: 11.5px; font-weight: 300;
+  padding: 10px 14px; border-radius: 8px;
+  margin-bottom: 16px; display: none; width: 100%;
+  letter-spacing: 0.2px; line-height: 1.5;
+}
+.login-page-container .msg.error { background: rgba(180,60,40,0.15); border: 1px solid rgba(220,80,60,0.2); color: rgba(255,160,140,0.85); }
+.login-page-container .msg.success { background: rgba(80,160,60,0.12); border: 1px solid rgba(140,200,100,0.2); color: rgba(180,230,140,0.85); }
+.login-page-container .msg.show { display: block; }

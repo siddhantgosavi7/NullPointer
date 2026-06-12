@@ -1,21 +1,6 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "/dashboard", "destination": "/app/dashboard", "permanent": true },
-    { "source": "/predict", "destination": "/app/yield", "permanent": true },
-    { "source": "/assistant", "destination": "/app/assistant", "permanent": true },
-    { "source": "/disease", "destination": "/app/disease", "permanent": true },
-    { "source": "/crop", "destination": "/app/crop", "permanent": true },
-    { "source": "/crop-analysis", "destination": "/app/crop-analysis", "permanent": true },
-    { "source": "/weather", "destination": "/app/weather", "permanent": true },
-    { "source": "/irrigation", "destination": "/app/irrigation", "permanent": true },
-    { "source": "/market", "destination": "/app/market", "permanent": true },
-    { "source": "/schemes", "destination": "/app/schemes", "permanent": true },
-    { "source": "/profile", "destination": "/app/profile", "permanent": true },
-    { "source": "/alerts", "destination": "/app/alerts", "permanent": true },
-    { "source": "/analytics", "destination": "/app/analytics", "permanent": true }
-  ],
   "rewrites": [
-    { "source": "/app/:path*", "destination": "/app/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

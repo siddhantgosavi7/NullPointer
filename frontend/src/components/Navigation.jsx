@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -10,6 +10,7 @@ const Navigation = ({ scrolled: propScrolled }) => {
   const [scrolled, setScrolled] = useState(false);
   const [language, setLanguage] = useState(i18n.language || 'en');
   const location = useLocation();
+  const navigate = useNavigate();
   const { currentUser, logout } = useAuth();
   const { t } = useTranslation();
 
@@ -24,7 +25,7 @@ const Navigation = ({ scrolled: propScrolled }) => {
   const handleLogout = async () => {
     try {
       await logout();
-      window.location.href = '/login.html';
+      navigate('/login');
     } catch (error) {
       console.error("Failed to log out", error);
     }
@@ -81,9 +82,9 @@ const Navigation = ({ scrolled: propScrolled }) => {
                 {t('navigation.logout')}
               </button>
             ) : (
-              <a href="/login.html" className="px-4 py-2 text-[11px] tracking-[2px] uppercase text-accent border border-[rgba(180,210,140,0.25)] rounded-full hover:bg-[rgba(40,65,40,0.5)] transition-all">
+              <Link to="/login" className="px-4 py-2 text-[11px] tracking-[2px] uppercase text-accent border border-[rgba(180,210,140,0.25)] rounded-full hover:bg-[rgba(40,65,40,0.5)] transition-all">
                 {t('navigation.login')}
-              </a>
+              </Link>
             )}
 
             <div className="relative inline-flex items-center gap-2 pointer-events-auto ml-2">
@@ -164,9 +165,9 @@ const Navigation = ({ scrolled: propScrolled }) => {
               {t('navigation.logout')}
             </button>
           ) : (
-            <a href="/login.html" className="px-6 py-2.5 text-[11px] tracking-[2px] uppercase text-accent border border-[rgba(180,210,140,0.25)] rounded-full hover:bg-[rgba(40,65,40,0.5)] transition-all">
+            <Link to="/login" className="px-6 py-2.5 text-[11px] tracking-[2px] uppercase text-accent border border-[rgba(180,210,140,0.25)] rounded-full hover:bg-[rgba(40,65,40,0.5)] transition-all">
               {t('navigation.login')}
-            </a>
+            </Link>
           )}
 
           <div className="w-12 h-px bg-[rgba(140,180,120,0.2)] my-2"></div>
