@@ -1,5 +1,5 @@
-from backend.ai.diseaseDetection.model_wrapper import predict_from_bytes
-from backend.utils.image_utils import estimate_infected_area
+from ai.diseaseDetection.model_wrapper import predict_from_bytes
+from utils.image_utils import estimate_infected_area
 
 
 def predict_disease_service(image_bytes: bytes) -> dict:

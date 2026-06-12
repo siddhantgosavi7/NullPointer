@@ -1,4 +1,4 @@
-from backend.ai.yieldPrediction.model_wrapper import predict_yield
+from ai.yieldPrediction.model_wrapper import predict_yield
 
 
 def predict_yield_service(payload: dict) -> dict:

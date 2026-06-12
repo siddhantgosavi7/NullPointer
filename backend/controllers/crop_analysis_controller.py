@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 from fastapi import HTTPException, UploadFile
-from backend.services.crop_analysis_service import analyze_crop_service
+from services.crop_analysis_service import analyze_crop_service
 
 async def analyze_crop_controller(image: UploadFile, crop_type: str, growth_stage: str):
     allowed_extensions = {'.jpg', '.jpeg', '.png', '.webp', '.jfif'}

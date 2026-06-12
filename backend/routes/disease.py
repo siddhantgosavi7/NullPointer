@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
-from backend.controllers.disease_controller import predict_disease_controller
+from controllers.disease_controller import predict_disease_controller
 
 router = APIRouter()
 

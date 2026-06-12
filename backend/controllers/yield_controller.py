@@ -1,5 +1,5 @@
 from fastapi import HTTPException
-from backend.services.yield_service import predict_yield_service
+from services.yield_service import predict_yield_service
 
 async def predict_yield_controller(payload: dict):
     required = ["crop_type", "area", "soil_parameters", "weather_data", "historical_data"]

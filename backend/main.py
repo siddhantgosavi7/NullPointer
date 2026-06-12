@@ -16,7 +16,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("backend")
 
-from backend.routes import disease, crop_analysis, yield_prediction
+from routes import disease, crop_analysis, yield_prediction
 
 app = FastAPI(title="KrishiMitra Backend")
 

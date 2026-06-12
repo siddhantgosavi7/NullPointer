@@ -1,7 +1,7 @@
 import os
 from fastapi import HTTPException, UploadFile
 from pathlib import Path
-from backend.services.disease_service import predict_disease_service
+from services.disease_service import predict_disease_service
 
 async def predict_disease_controller(image: UploadFile):
     allowed_extensions = {'.jpg', '.jpeg', '.png', '.webp', '.jfif'}

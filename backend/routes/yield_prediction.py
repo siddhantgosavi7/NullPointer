@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from backend.controllers.yield_controller import predict_yield_controller
+from controllers.yield_controller import predict_yield_controller
 
 router = APIRouter()
 

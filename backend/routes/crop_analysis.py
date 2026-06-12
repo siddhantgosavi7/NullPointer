@@ -1,5 +1,5 @@
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
-from backend.controllers.crop_analysis_controller import analyze_crop_controller
+from controllers.crop_analysis_controller import analyze_crop_controller
 
 router = APIRouter()
 

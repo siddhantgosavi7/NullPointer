@@ -1,4 +1,4 @@
-from backend.ai.cropAnalysis.model_wrapper import predict_crop_analysis
+from ai.cropAnalysis.model_wrapper import predict_crop_analysis
 
 
 def analyze_crop_service(image_bytes: bytes, crop_type: str, growth_stage: str) -> dict:
