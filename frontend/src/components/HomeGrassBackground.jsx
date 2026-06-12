@@ -45,6 +45,11 @@ function buildSkyTexture() {
 export default function HomeGrassBackground({ activeStageState }) {
   const containerRef = useRef(null);
 
+  const activeStageStateRef = useRef(activeStageState);
+  useEffect(() => {
+    activeStageStateRef.current = activeStageState;
+  }, [activeStageState]);
+
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -366,6 +371,7 @@ export default function HomeGrassBackground({ activeStageState }) {
     window.addEventListener('resize', handleResize);
 
     // Camera paths & params
+    const stageNames = ['Hero', 'Manifesto', 'Pillars', 'Stats', 'Quote', 'CTA', 'Footer'];
     const cameraPath = [
       [0.00, -2.8,  7.2, 19.6,  0.5, 1.5,  0.4, 22.0, 1, 1, 10.0, 12.5, 5.0, 1.0, 40.0],  // Hero
       [0.14,  0,    2.2, 14.0,  0,  -2.0,   0,   15.0, 1, 1,  8.0, 10.0, 5.0, 1.0, 30.0],  // Manifesto
@@ -535,7 +541,7 @@ export default function HomeGrassBackground({ activeStageState }) {
 
     // Settings overrides exposed globally for legacy helper functions
     window._getCameraOverride = () => {
-      return activeStageState.overrideStage;
+      return activeStageStateRef.current.overrideStage;
     };
 
     // Prepare settings panel reference
@@ -727,7 +733,7 @@ export default function HomeGrassBackground({ activeStageState }) {
         }
 
         // Live stats update if stage overlay is editing
-        const ovr = activeStageState.overrideStage;
+        const ovr = activeStageStateRef.current.overrideStage;
         if (ovr >= 0 && cameraPath[ovr][8] && dofEnabled) {
           const fdEl = document.getElementById(`cp_${ovr}_fd_v`);
           if (fdEl) fdEl.textContent = focusDistanceU.value.toFixed(1);
@@ -766,7 +772,7 @@ export default function HomeGrassBackground({ activeStageState }) {
       window._getCameraOverride = null;
       window._homeGrassUniforms = null;
     };
-  }, [activeStageState]);
+  }, []);
 
   return <div ref={containerRef} style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0 }} />;
 }
