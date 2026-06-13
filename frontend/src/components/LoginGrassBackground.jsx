@@ -227,11 +227,12 @@ export default function LoginGrassBackground() {
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
 
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     const ffPA = ffGeo.getAttribute('position');
 
-    renderer.setAnimationLoop(() => {
-      const t = clock.getElapsedTime();
+    renderer.setAnimationLoop((timestamp) => {
+      timer.update(timestamp);
+      const t = timer.getElapsedTime();
       timeU.value = t;
       sMouse.lerp(tMouse, 0.08);
       mouseU.value.copy(sMouse);

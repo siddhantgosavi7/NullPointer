@@ -1,29 +1,22 @@
-# KrishiMitra AI
+# Krishi Mitra 🌾
+
+AI-powered farming assistant using IoT + Gemini AI
+
+## 🔗 Live Demo
+[Try Krishi Mitra](https://krishi-mitra-ai-livid.vercel.app/)
 
 KrishiMitra AI is a Vite + React agriculture dashboard for farmers. It includes a protected app shell, Firebase authentication, and pages for crop recommendations, weather intelligence, irrigation advice, market intelligence, government schemes, alerts, analytics, and profile management.
 
-## What this project includes
 
-- A landing page at `/`
-- A separate login page at `/login.html`
-- A protected dashboard app under `/app/`
-- Firebase Auth and Firestore integration
-- AI assistant access using a Groq API key
-- Responsive navigation, dashboard layout, and weather background UI
+## Tech Stack
 
-## Current pages
-
-- Dashboard
-- AI Assistant
-- Disease Detection
-- Crop Recommendation
-- Weather Intelligence
-- Irrigation Advisor
-- Market Intelligence
-- Government Schemes
-- Farmer Profile
-- Alerts Center
-- Analytics
+- **Frontend Core**: React 19, Vite, React Router DOM v7
+- **Styling**: Vanilla CSS, TailwindCSS (for utility styling)
+- **State Management & Authentication**: Firebase Auth, Firebase Firestore (Database)
+- **External Integration**: OpenWeather API (Weather Intel), Groq API (AI Assistant)
+- **3D Graphics & Simulation**: Three.js, WebGL/WebGPU Simulation
+- **Localization (i18n)**: Static synchronous locales (English, Hindi, Marathi, German) via `react-i18next`
+- **Backend**: FastAPI (Python), Uvicorn, Python ML/AI models
 
 ## Requirements
 
@@ -33,31 +26,53 @@ KrishiMitra AI is a Vite + React agriculture dashboard for farmers. It includes 
 - A Firebase project configured for Auth and Firestore
 - Optional: `VITE_GROQ_API_KEY` for the AI Assistant page
 
-## Run the project
+## Run the Project
 
-1. Install dependencies.
+### 1. Start the Frontend Dev Server
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the Vite dev server:
+   ```bash
+   npm run dev
+   ```
+4. Open the app in your browser:
+   - http://localhost:5173/
+   - http://localhost:5173/login.html
+   - http://localhost:5173/app/
+
+### 2. Start the Backend Server
+
+Ensure you start the backend FastAPI server to run the AI model inferences (for disease scans, yield prediction, etc.):
+
+1. Navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Activate the Python virtual environment:
+   - **Windows**:
+     ```powershell
+     .venv\Scripts\activate
+     ```
+   - **macOS/Linux**:
+     ```bash
+     source .venv/bin/activate
+     ```
+3. Start the uvicorn server:
+   ```bash
+   python -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+
+## Production Build (Frontend)
 
 ```bash
-npm install
-```
-
-3. Start the Vite dev server.
-
-```bash
-npm run dev
-```
-
-4. Open the app in your browser.
-
-```text
-http://localhost:5173/
-http://localhost:5173/login.html
-http://localhost:5173/app/
-```
-
-## Production build
-
-```bash
+cd frontend
 npm run build
 npm run lint
 ```
@@ -69,7 +84,6 @@ npm run lint
 - **Multilingual Support (i18n)**:
   - Supported locales: English (`en`), Hindi (`hi`), Marathi (`mr`), and German (`de`).
   - The React app uses `react-i18next` with **statically imported** JSON resource bundles (`src/locales/*.json`) in `src/i18n.js` to ensure 100% synchronous initialization and eliminate layout flickers.
-  - The static landing (`index.html`) and login (`login.html`) pages utilize a unified ES module script (`src/landing-i18n.js`) which parses `data-i18n` and `data-i18n-placeholder` attributes, sharing locale dictionaries with the React app.
   - Active language choice persists across navigations and updates instantly across all views using the shared `krishi_mitra_language` key in `localStorage`.
 - **Routing Basename**: The React app is hosted under `/app` (configured in `vite.config.js` and `App.jsx`).
 - **Backend API URL**: Configured via `VITE_API_URL` (default: `http://localhost:8000`).
@@ -77,46 +91,26 @@ npm run lint
 ## Repository Structure
 
 ```text
-index.html                     # Static landing page (contains localized tags)
-login.html                     # Static login/register page (contains localized tags)
-app/index.html                 # React dashboard wrapper
-src/
-  landing-i18n.js              # Localization script for static pages (index & login)
-  i18n.js                      # Synchronous static locale loader for React app
-  App.jsx                      # React router configuration
-  main.jsx                     # React client bootstrap
-  config/firebase.js           # Environment-configured Firebase settings
-  context/AuthContext.jsx
-  locales/                     # Localized translation JSON keys
-    en.json, hi.json, mr.json, de.json
-  layouts/
-  components/
-  pages/
-backend/                       # FastAPI model server
+frontend/
+  index.html                     # Static landing page / React dashboard wrapper
+  src/
+    i18n.js                      # Synchronous static locale loader for React app
+    App.jsx                      # React router configuration
+    main.jsx                     # React client bootstrap
+    config/firebase.js           # Environment-configured Firebase settings
+    context/AuthContext.jsx
+    locales/                     # Localized translation JSON keys
+      en.json, hi.json, mr.json, de.json
+    layouts/
+    components/
+    pages/
+backend/                         # FastAPI model server
 ```
 
-## Running the Backend
+## Known Issues
 
-Ensure you start the backend FastAPI server to run the AI model inferences (for disease scans, yield prediction, etc.):
-
-```bash
-# Activate the Python virtual environment
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-source .venv/bin/activate
-
-# Start the uvicorn server
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-
-## Important Safety & Redirect Rules
-
-- Do not open the HTML files directly from disk; run the project using the Vite server.
-- The dashboard is protected by Firebase authentication. If the user is not signed in, the app automatically redirects to `/login.html` (the local development mode bypasses this checks to allow immediate testing).
-- If the AI Assistant needs external access, add the Groq key through `VITE_GROQ_API_KEY` inside `.env`.
+- **Hamburger Menu Blank Screen Bug**: When the user clicks the 3 horizontal lines (hamburger menu) in the top corner of the website, the screen turns completely black. However, after logging in, the same action works correctly.
 
 ## License
 
 This project is currently an academic/hackathon-style frontend prototype. Any crop advice or AI output should be validated before real-world use.
-

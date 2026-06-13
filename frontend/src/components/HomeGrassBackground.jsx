@@ -4,7 +4,7 @@ import {
   Fn, uniform, float, vec3, instancedArray, instanceIndex, uv,
   positionGeometry, positionWorld, sin, cos, pow, smoothstep, mix,
   sqrt, select, hash, time, deltaTime, PI, mx_noise_float,
-  pass, mrt, output, transformedNormalView,
+  pass, mrt, output, normalView,
 } from 'three/tsl';
 import { dof } from 'three/addons/tsl/display/DepthOfFieldNode.js';
 
@@ -314,11 +314,11 @@ export default function HomeGrassBackground({ activeStageState }) {
     scene.add(dirLight);
 
     // Post Processing (DoF)
-    const postProcessing = new THREE.PostProcessing(renderer);
+    const postProcessing = new THREE.RenderPipeline(renderer);
     const scenePass = pass(scene, camera);
     scenePass.setMRT(mrt({
       output: output,
-      normal: transformedNormalView,
+      normal: normalView,
     }));
     const sceneColor = scenePass.getTextureNode('output');
     const sceneViewZ = scenePass.getViewZNode();
@@ -565,7 +565,7 @@ export default function HomeGrassBackground({ activeStageState }) {
     };
 
     // Main animation loop
-    const clock = new THREE.Clock();
+    const timer = new THREE.Timer();
     const lookTarget = new THREE.Vector3();
 
     const _siteFooter = document.querySelector('.site-footer');
@@ -590,8 +590,9 @@ export default function HomeGrassBackground({ activeStageState }) {
       renderer.setAnimationLoop(animate);
     }
 
-    function animate() {
-      const dt = Math.min(clock.getDelta(), 0.05);
+    function animate(timestamp) {
+      timer.update(timestamp);
+      const dt = Math.min(timer.getDelta(), 0.05);
 
       if (_scrollDirty) {
         targetScrollT = getScrollProgress();

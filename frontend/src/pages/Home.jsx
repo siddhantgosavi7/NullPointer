@@ -453,7 +453,7 @@ export default function Home() {
             {/* Sky Gradient */}
             <div className="sp-section">
               <div className="sp-section-title">Sky Gradient</div>
-              {Object.keys(skyColors).map((key, idx) => (
+              {Object.keys(u.skyColors).map((key, idx) => (
                 <div className="sp-color-row" key={idx}>
                   <span className="sp-label">{key.charAt(0).toUpperCase() + key.slice(1)}</span>
                   <input 
